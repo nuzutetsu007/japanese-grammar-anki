@@ -1,0 +1,275 @@
+{
+  "_meta": {
+    "source_book": "日本語総まとめ N1 文法 (45日間)",
+    "source_images": [
+      "pic-sourse/IMG20260929210026.jpg",
+      "pic-sourse/IMG20260929210029.jpg",
+      "pic-sourse/IMG20260929210035.jpg",
+      "pic-sourse/IMG20260929210038.jpg"
+    ],
+    "coverage": "第1週〜第4週 (1日目〜5日目)。第5週・第6週は写真が無いため未収録。",
+    "generated_by": "vision OCR (pi agent) + 人手相当の目視照合",
+    "extractor": "ingest_toc_v1",
+    "notes": [
+      "「●確認テスト」は文法点ではないので取り込まない(page_ref としてのみ記録)。",
+      "ページ番号は各文法点の開始ページ。",
+      "1つの page_ref に複数の関連表現がある場合は title_ja にまとめて記載。"
+    ]
+  },
+  "chapters": [
+    {
+      "week": 1,
+      "day": 1,
+      "page_start": 16,
+      "page_end": 21,
+      "test_page": 20,
+      "items": [
+        {"title_ja": "〜が早いか", "reading": "〜がはやいか", "page_ref": 16},
+        {"title_ja": "〜そばから", "reading": "〜そばから", "page_ref": 17},
+        {"title_ja": "〜なり", "reading": "〜なり", "page_ref": 18},
+        {"title_ja": "〜や否や／〜や", "reading": "〜やいなや／〜や", "page_ref": 19}
+      ]
+    },
+    {
+      "week": 1,
+      "day": 2,
+      "page_start": 22,
+      "page_end": 25,
+      "test_page": 25,
+      "items": [
+        {"title_ja": "〜かたがた", "reading": "〜かたがた", "page_ref": 22},
+        {"title_ja": "〜かたわら", "reading": "〜かたわら", "page_ref": 23},
+        {"title_ja": "〜がてら", "reading": "〜がてら", "page_ref": 24}
+      ]
+    },
+    {
+      "week": 1,
+      "day": 3,
+      "page_start": 26,
+      "page_end": 29,
+      "test_page": 29,
+      "items": [
+        {"title_ja": "〜ところを", "reading": "〜ところを", "page_ref": 26},
+        {"title_ja": "〜にあって", "reading": "〜にあって", "page_ref": 27},
+        {"title_ja": "〜に至る／〜に至るまで／〜に至って／〜に至っては／〜に至っても", "reading": "〜にいたる／〜にいたるまで／〜にいたって／〜にいたっては／〜にいたっても", "page_ref": 28}
+      ]
+    },
+    {
+      "week": 1,
+      "day": 4,
+      "page_start": 30,
+      "page_end": 33,
+      "test_page": 33,
+      "items": [
+        {"title_ja": "〜てからというもの", "reading": "〜てからというもの", "page_ref": 30},
+        {"title_ja": "〜を皮切りに／〜を皮切りにして／〜を皮切りとして", "reading": "〜をかわきりに／〜をかわきりにして／〜をかわきりとして", "page_ref": 31},
+        {"title_ja": "〜を機に", "reading": "〜をきに", "page_ref": 32}
+      ]
+    },
+    {
+      "week": 1,
+      "day": 5,
+      "page_start": 34,
+      "page_end": 37,
+      "test_page": 37,
+      "items": [
+        {"title_ja": "〜が最後", "reading": "〜がさいご", "page_ref": 34},
+        {"title_ja": "〜を限りに", "reading": "〜をかぎりに", "page_ref": 35},
+        {"title_ja": "〜をもって", "reading": "〜をもって", "page_ref": 36}
+      ]
+    },
+    {
+      "week": 2,
+      "day": 1,
+      "page_start": 38,
+      "page_end": 43,
+      "test_page": 42,
+      "items": [
+        {"title_ja": "〜きらいがある", "reading": "〜きらいがある", "page_ref": 38},
+        {"title_ja": "〜ずくめ", "reading": "〜ずくめ", "page_ref": 39},
+        {"title_ja": "〜まみれ", "reading": "〜まみれ", "page_ref": 40},
+        {"title_ja": "〜めく／〜めいた", "reading": "〜めく／〜めいた", "page_ref": 41}
+      ]
+    },
+    {
+      "week": 2,
+      "day": 2,
+      "page_start": 44,
+      "page_end": 49,
+      "test_page": 48,
+      "items": [
+        {"title_ja": "〜っぱなし", "reading": "〜っぱなし", "page_ref": 44},
+        {"title_ja": "〜つ〜つ", "reading": "〜つ〜つ", "page_ref": 45},
+        {"title_ja": "〜ながらに／〜ながらの", "reading": "〜ながらに／〜ながらの", "page_ref": 46},
+        {"title_ja": "〜ながらも", "reading": "〜ながらも", "page_ref": 47}
+      ]
+    },
+    {
+      "week": 2,
+      "day": 3,
+      "page_start": 50,
+      "page_end": 53,
+      "test_page": 53,
+      "items": [
+        {"title_ja": "〜と相まって／〜と相まった", "reading": "〜とあいまって／〜とあいまった", "page_ref": 50},
+        {"title_ja": "〜にかかわる", "reading": "〜にかかわる", "page_ref": 51},
+        {"title_ja": "〜に即して／〜に即しては／〜に即しても／〜に即した", "reading": "〜にそくして／〜にそくしては／〜にそくしても／〜にそくした", "page_ref": 52}
+      ]
+    },
+    {
+      "week": 2,
+      "day": 4,
+      "page_start": 54,
+      "page_end": 57,
+      "test_page": 57,
+      "items": [
+        {"title_ja": "〜ともなく／〜ともなしに", "reading": "〜ともなく／〜ともなしに", "page_ref": 54},
+        {"title_ja": "〜をものともせず", "reading": "〜をものともせず", "page_ref": 55},
+        {"title_ja": "〜をよそに", "reading": "〜をよそに", "page_ref": 56}
+      ]
+    },
+    {
+      "week": 2,
+      "day": 5,
+      "page_start": 58,
+      "page_end": 61,
+      "test_page": 61,
+      "items": [
+        {"title_ja": "〜からある／〜からの", "reading": "〜からある／〜からの", "page_ref": 58},
+        {"title_ja": "〜ごとき／〜ごとく", "reading": "〜ごとき／〜ごとく", "page_ref": 59},
+        {"title_ja": "〜というもの", "reading": "〜というもの", "page_ref": 60}
+      ]
+    },
+    {
+      "week": 3,
+      "day": 1,
+      "page_start": 62,
+      "page_end": 67,
+      "test_page": 66,
+      "items": [
+        {"title_ja": "〜たる", "reading": "〜たる", "page_ref": 62},
+        {"title_ja": "〜と思いきや", "reading": "〜とおもいきや", "page_ref": 63},
+        {"title_ja": "〜ともあろう", "reading": "〜ともあろう", "page_ref": 64},
+        {"title_ja": "〜ともなると／〜ともなれば", "reading": "〜ともなると／〜ともなれば", "page_ref": 65}
+      ]
+    },
+    {
+      "week": 3,
+      "day": 2,
+      "page_start": 68,
+      "page_end": 73,
+      "test_page": 72,
+      "items": [
+        {"title_ja": "〜たところで", "reading": "〜たところで", "page_ref": 68},
+        {"title_ja": "〜としたところで／〜としたって／〜にしたところで／〜にしたって", "reading": "〜としたところで／〜としたって／〜にしたところで／〜にしたって", "page_ref": 69},
+        {"title_ja": "〜とはいえ", "reading": "〜とはいえ", "page_ref": 70},
+        {"title_ja": "〜にして", "reading": "〜にして", "page_ref": 71}
+      ]
+    },
+    {
+      "week": 3,
+      "day": 3,
+      "page_start": 74,
+      "page_end": 79,
+      "test_page": 78,
+      "items": [
+        {"title_ja": "〜ではあるまいし／〜じゃあるまいし", "reading": "〜ではあるまいし／〜じゃあるまいし", "page_ref": 74},
+        {"title_ja": "〜ならいざしらず", "reading": "〜ならいざしらず", "page_ref": 75},
+        {"title_ja": "〜ならでは／〜ならではの", "reading": "〜ならでは／〜ならではの", "page_ref": 76},
+        {"title_ja": "〜なりに／〜なりの", "reading": "〜なりに／〜なりの", "page_ref": 77}
+      ]
+    },
+    {
+      "week": 3,
+      "day": 4,
+      "page_start": 80,
+      "page_end": 85,
+      "test_page": 84,
+      "items": [
+        {"title_ja": "〜というところだ／〜といったところだ", "reading": "〜というところだ／〜といったところだ", "page_ref": 80},
+        {"title_ja": "〜にたえる", "reading": "〜にたえる", "page_ref": 81},
+        {"title_ja": "〜にたえない", "reading": "〜にたえない", "page_ref": 82},
+        {"title_ja": "〜に足る", "reading": "〜にたる", "page_ref": 83}
+      ]
+    },
+    {
+      "week": 3,
+      "day": 5,
+      "page_start": 86,
+      "page_end": 91,
+      "test_page": 90,
+      "items": [
+        {"title_ja": "〜ときたら", "reading": "〜ときたら", "page_ref": 86},
+        {"title_ja": "〜とは", "reading": "〜とは", "page_ref": 87},
+        {"title_ja": "〜まじき", "reading": "〜まじき", "page_ref": 88},
+        {"title_ja": "〜ものを", "reading": "〜ものを", "page_ref": 89}
+      ]
+    },
+    {
+      "week": 4,
+      "day": 1,
+      "page_start": 92,
+      "page_end": 97,
+      "test_page": 96,
+      "items": [
+        {"title_ja": "〜こそあれ", "reading": "〜こそあれ", "page_ref": 92},
+        {"title_ja": "〜こそすれ", "reading": "〜こそすれ", "page_ref": 93},
+        {"title_ja": "〜てこそ", "reading": "〜てこそ", "page_ref": 94},
+        {"title_ja": "〜ばこそ", "reading": "〜ばこそ", "page_ref": 95}
+      ]
+    },
+    {
+      "week": 4,
+      "day": 2,
+      "page_start": 98,
+      "page_end": 101,
+      "test_page": 101,
+      "items": [
+        {"title_ja": "〜すら／〜ですら", "reading": "〜すら／〜ですら", "page_ref": 98},
+        {"title_ja": "〜だに", "reading": "〜だに", "page_ref": 99},
+        {"title_ja": "〜たりとも", "reading": "〜たりとも", "page_ref": 100}
+      ]
+    },
+    {
+      "week": 4,
+      "day": 3,
+      "page_start": 102,
+      "page_end": 107,
+      "test_page": 107,
+      "items": [
+        {"title_ja": "〜ことなしに／〜ことなしには", "reading": "〜ことなしに／〜ことなしには", "page_ref": 102},
+        {"title_ja": "ただ〜のみ／(ひとり)〜のみ", "reading": "ただ〜のみ／(ひとり)〜のみ", "page_ref": 103},
+        {"title_ja": "ただ〜のみならず／(ひとり)〜のみならず", "reading": "ただ〜のみならず／(ひとり)〜のみならず", "page_ref": 104},
+        {"title_ja": "〜なくして(は)", "reading": "〜なくして(は)", "page_ref": 105},
+        {"title_ja": "〜なしに／〜なしには", "reading": "〜なしに／〜なしには", "page_ref": 106}
+      ]
+    },
+    {
+      "week": 4,
+      "day": 4,
+      "page_start": 108,
+      "page_end": 113,
+      "test_page": 113,
+      "items": [
+        {"title_ja": "〜あっての", "reading": "〜あっての", "page_ref": 108},
+        {"title_ja": "〜とあれば", "reading": "〜とあれば", "page_ref": 109},
+        {"title_ja": "〜ないまでも", "reading": "〜ないまでも", "page_ref": 110},
+        {"title_ja": "〜までもない／〜までもなく", "reading": "〜までもない／〜までもなく", "page_ref": 111},
+        {"title_ja": "〜をおいて", "reading": "〜をおいて", "page_ref": 112}
+      ]
+    },
+    {
+      "week": 4,
+      "day": 5,
+      "page_start": 114,
+      "page_end": 118,
+      "test_page": 118,
+      "items": [
+        {"title_ja": "〜いかんだ／〜いかんで／〜いかんによって／〜いかんでは／〜いかんによっては", "reading": "〜いかんだ／〜いかんで／〜いかんによって／〜いかんでは／〜いかんによっては", "page_ref": 114},
+        {"title_ja": "〜いかんによらず／〜いかんにかかわらず／〜いかんを問わず", "reading": "〜いかんによらず／〜いかんにかかわらず／〜いかんを問わず", "page_ref": 115},
+        {"title_ja": "〜といえども", "reading": "〜といえども", "page_ref": 116},
+        {"title_ja": "〜をもってすれば", "reading": "〜をもってすれば", "page_ref": 117}
+      ]
+    }
+  ]
+}

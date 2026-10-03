@@ -1,0 +1,14 @@
+# 统一换行,避免跨平台 diff 噪音
+* text=auto eol=lf
+
+# 二进制 —— 别让 git 试图 merge/diff
+*.sqlite  binary
+*.apkg    binary
+*.mp3     binary
+*.wav     binary
+*.jpg     binary
+*.png     binary
+
+# 不在语言统计里凑数
+data/out/* linguist-generated
+*.sqlite   linguist-vendored

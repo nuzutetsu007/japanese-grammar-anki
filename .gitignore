@@ -1,0 +1,24 @@
+# 密钥(只提交 .env.example)
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# 书的照片 —— 有版权,不公开(OCR 结果 input/toc/ 可以提交)
+pic-sourse/
+
+# 中间产物与日志
+data/out/
+data/raw/
+
+# 构建出来的牌组(用 GitHub Release 分发,不进 git)
+*.apkg
+
+# 编辑器
+.DS_Store
+.idea/
+.vscode/

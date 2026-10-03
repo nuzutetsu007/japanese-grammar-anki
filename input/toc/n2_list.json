@@ -1,0 +1,1607 @@
+{
+  "source": "https://japanesetest4you.com/jlpt-n2-grammar-list/",
+  "fetched": "japanesetest4you.com",
+  "chapter": "N2文法",
+  "items": [
+    {
+      "title_ja": "あるいは",
+      "reading_romaji": "aruiwa",
+      "gloss": "or, possibly",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%82%e3%82%8b%e3%81%84%e3%81%af-aruiwa/",
+      "note": "",
+      "book_order": 1001
+    },
+    {
+      "title_ja": "ばかり",
+      "reading_romaji": "bakari",
+      "gloss": "about, approximately",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%b0%e3%81%8b%e3%82%8a-bakari-2/",
+      "note": "2",
+      "book_order": 1002
+    },
+    {
+      "title_ja": "ばかりだ",
+      "reading_romaji": "bakari da",
+      "gloss": "continue to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n3-grammar-%e3%81%b0%e3%81%8b%e3%82%8a%e3%81%a0-bakari-da/",
+      "note": "",
+      "book_order": 1003
+    },
+    {
+      "title_ja": "ばかりに",
+      "reading_romaji": "bakari ni",
+      "gloss": "because, on account of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n3-grammar-%e3%81%b0%e3%81%8b%e3%82%8a%e3%81%ab-bakari-ni/",
+      "note": "",
+      "book_order": 1004
+    },
+    {
+      "title_ja": "ぶりに",
+      "reading_romaji": "buri ni",
+      "gloss": "for the first time in",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%b6%e3%82%8a%e3%81%ab-buri-ni/",
+      "note": "",
+      "book_order": 1005
+    },
+    {
+      "title_ja": "ちっとも〜ない",
+      "reading_romaji": "chitto mo〜nai",
+      "gloss": "not at all, not in the least",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a1%e3%81%a3%e3%81%a8%e3%82%82%ef%bd%9e%e3%81%aa%e3%81%84-chitto-monai/",
+      "note": "",
+      "book_order": 1006
+    },
+    {
+      "title_ja": "だけあって",
+      "reading_romaji": "dake atte",
+      "gloss": "…being the case, precisely because",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a0%e3%81%91%e3%81%82%e3%81%a3%e3%81%a6-dake-atte/",
+      "note": "",
+      "book_order": 1007
+    },
+    {
+      "title_ja": "だけでなく",
+      "reading_romaji": "dake de naku",
+      "gloss": "not only… but also",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a0%e3%81%91%e3%81%a7%e3%81%aa%e3%81%8f-dake-de-naku/",
+      "note": "",
+      "book_order": 1008
+    },
+    {
+      "title_ja": "だけましだ",
+      "reading_romaji": "dake mashi da",
+      "gloss": "one should feel grateful for",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a0%e3%81%91%e3%81%be%e3%81%97%e3%81%a0-dake-mashi-da/",
+      "note": "",
+      "book_order": 1009
+    },
+    {
+      "title_ja": "だけに",
+      "reading_romaji": "dake ni",
+      "gloss": "…being the case, precisely because",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a0%e3%81%91%e3%81%ab-dake-ni/",
+      "note": "",
+      "book_order": 1010
+    },
+    {
+      "title_ja": "だけのことはある",
+      "reading_romaji": "dake no koto wa aru",
+      "gloss": "no wonder, it’s not surprising that",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a0%e3%81%91%e3%81%ae%e3%81%93%e3%81%a8%e3%81%af%e3%81%82%e3%82%8b/",
+      "note": "",
+      "book_order": 1011
+    },
+    {
+      "title_ja": "だけは",
+      "reading_romaji": "dake wa",
+      "gloss": "to do all that one can",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a0%e3%81%91%e3%81%af-dake-wa/",
+      "note": "",
+      "book_order": 1012
+    },
+    {
+      "title_ja": "だって",
+      "reading_romaji": "datte",
+      "gloss": "because, but",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a0%e3%81%a3%e3%81%a6-datte/",
+      "note": "",
+      "book_order": 1013
+    },
+    {
+      "title_ja": "(で)すら",
+      "reading_romaji": "de sura",
+      "gloss": "even",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n1-grammar-%e3%81%99%e3%82%89%e3%81%a7%e3%81%99%e3%82%89-surade-sura/",
+      "note": "",
+      "book_order": 1014
+    },
+    {
+      "title_ja": "ではないか",
+      "reading_romaji": "dewa nai ka",
+      "gloss": "let’s do something, why don’t we",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%ef%bc%88%e3%82%88%ef%bc%89%e3%81%86%e3%81%a7%e3%81%af%e3%81%aa%e3%81%84%e3%81%8b-you-dewa-nai-ka/",
+      "note": "",
+      "book_order": 1015
+    },
+    {
+      "title_ja": "でしかない",
+      "reading_romaji": "de shika nai",
+      "gloss": "merely, nothing but, no more than",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a7%e3%81%97%e3%81%8b%e3%81%aa%e3%81%84-de-shika-nai/",
+      "note": "",
+      "book_order": 1016
+    },
+    {
+      "title_ja": "どころではない",
+      "reading_romaji": "dokoro dewa nai",
+      "gloss": "this is not the time for…",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a9%e3%81%93%e3%82%8d%e3%81%a7%e3%81%af%e3%81%aa%e3%81%84-dokoro-dewa-nai/",
+      "note": "",
+      "book_order": 1017
+    },
+    {
+      "title_ja": "どうせ",
+      "reading_romaji": "douse",
+      "gloss": "anyway, anyhow",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a9%e3%81%86%e3%81%9b-douse/",
+      "note": "",
+      "book_order": 1018
+    },
+    {
+      "title_ja": "どうやら",
+      "reading_romaji": "dou yara",
+      "gloss": "it seems like, it appears that",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a9%e3%81%86%e3%82%84%e3%82%89-dou-yara/",
+      "note": "",
+      "book_order": 1019
+    },
+    {
+      "title_ja": "える/うる",
+      "reading_romaji": "eru/uru",
+      "gloss": "can, is possible",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%88%e3%82%8b%e3%81%86%e3%82%8b-eruuru/",
+      "note": "",
+      "book_order": 1020
+    },
+    {
+      "title_ja": "えない",
+      "reading_romaji": "enai",
+      "gloss": "unable to, cannot",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%88%e3%81%aa%e3%81%84-enai/",
+      "note": "",
+      "book_order": 1021
+    },
+    {
+      "title_ja": "ふたたび",
+      "reading_romaji": "futatabi",
+      "gloss": "again, once more",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%b5%e3%81%9f%e3%81%9f%e3%81%b3-futatabi/",
+      "note": "",
+      "book_order": 1022
+    },
+    {
+      "title_ja": "ふうに",
+      "reading_romaji": "fuu ni",
+      "gloss": "in a way (this way/that way/what way)",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%b5%e3%81%86%e3%81%ab-fuu-ni/",
+      "note": "",
+      "book_order": 1023
+    },
+    {
+      "title_ja": "げ",
+      "reading_romaji": "ge",
+      "gloss": "giving the appearance of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%92-ge/",
+      "note": "",
+      "book_order": 1024
+    },
+    {
+      "title_ja": "ごとに",
+      "reading_romaji": "goto ni",
+      "gloss": "each, every, at intervals of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%94%e3%81%a8%e3%81%ab-goto-ni/",
+      "note": "",
+      "book_order": 1025
+    },
+    {
+      "title_ja": "逆に",
+      "reading_romaji": "gyaku ni",
+      "gloss": "on the contrary",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8e%e3%82%83%e3%81%8f%e3%81%ab-gyaku-ni/",
+      "note": "",
+      "book_order": 1026
+    },
+    {
+      "title_ja": "いよいよ",
+      "reading_romaji": "iyoiyo",
+      "gloss": "at last, finally",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%84%e3%82%88%e3%81%84%e3%82%88-iyoiyo/",
+      "note": "",
+      "book_order": 1027
+    },
+    {
+      "title_ja": "反面",
+      "reading_romaji": "hanmen",
+      "gloss": "on the other hand",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%af%e3%82%93%e3%82%81%e3%82%93-hanmen/",
+      "note": "",
+      "book_order": 1028
+    },
+    {
+      "title_ja": "果たして",
+      "reading_romaji": "hatashite",
+      "gloss": "sure enough, really",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%af%e3%81%9f%e3%81%97%e3%81%a6-hatashite/",
+      "note": "",
+      "book_order": 1029
+    },
+    {
+      "title_ja": "以上に",
+      "reading_romaji": "ijou ni",
+      "gloss": "more than, no less than",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%84%e3%81%98%e3%82%87%e3%81%86%e3%81%ab-ijou-ni/",
+      "note": "",
+      "book_order": 1030
+    },
+    {
+      "title_ja": "いきなり",
+      "reading_romaji": "ikinari",
+      "gloss": "suddenly, all of a sudden",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%84%e3%81%8d%e3%81%aa%e3%82%8a-ikinari/",
+      "note": "",
+      "book_order": 1031
+    },
+    {
+      "title_ja": "いわゆる",
+      "reading_romaji": "iwayuru",
+      "gloss": "so-called, so to speak",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%84%e3%82%8f%e3%82%86%e3%82%8b-iwayuru/",
+      "note": "",
+      "book_order": 1032
+    },
+    {
+      "title_ja": "上",
+      "reading_romaji": "jou",
+      "gloss": "from the standpoint of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%98%e3%82%87%e3%81%86-jou/",
+      "note": "",
+      "book_order": 1033
+    },
+    {
+      "title_ja": "か〜ないかのうちに",
+      "reading_romaji": "ka〜nai ka no uchi ni",
+      "gloss": "right after, as soon as",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%ef%bd%9e%e3%81%aa%e3%81%84%e3%81%ae%e3%81%86%e3%81%a1%e3%81%ab-kanai-no-uchi-ni/",
+      "note": "",
+      "book_order": 1034
+    },
+    {
+      "title_ja": "かえって",
+      "reading_romaji": "kaette",
+      "gloss": "on the contrary, rather, surprisingly",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%e3%81%88%e3%81%a3%e3%81%a6-kaette/",
+      "note": "",
+      "book_order": 1035
+    },
+    {
+      "title_ja": "かいがある",
+      "reading_romaji": "kai ga aru",
+      "gloss": "it’s worth one’s effort to do something",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-japanese-grammar-n2-%e7%94%b2%e6%96%90%e3%81%8c%e3%81%82%e3%82%8b/",
+      "note": "",
+      "book_order": 1036
+    },
+    {
+      "title_ja": "か何か",
+      "reading_romaji": "ka nanika",
+      "gloss": "or something",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%e4%bd%95%e3%81%8b-ka-nanika/",
+      "note": "",
+      "book_order": 1037
+    },
+    {
+      "title_ja": "かねない",
+      "reading_romaji": "kanenai",
+      "gloss": "might happen, might do something",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-japanese-grammar-n2-%e3%81%8b%e3%81%ad%e3%81%aa%e3%81%84/",
+      "note": "",
+      "book_order": 1038
+    },
+    {
+      "title_ja": "かねる",
+      "reading_romaji": "kaneru",
+      "gloss": "unable to do something",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%e3%81%ad%e3%82%8b-kaneru/",
+      "note": "",
+      "book_order": 1039
+    },
+    {
+      "title_ja": "かのよう",
+      "reading_romaji": "ka no you",
+      "gloss": "as if, just like",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%e3%81%ae%e3%82%88%e3%81%86%e3%81%a0-ka-no-you-da/",
+      "note": "",
+      "book_order": 1040
+    },
+    {
+      "title_ja": "から言うと",
+      "reading_romaji": "kara iu to",
+      "gloss": "in terms of, from the point of view of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n3-grammar-%e3%81%8b%e3%82%89%e3%81%84%e3%81%86%e3%81%a8-kara-iu-to/",
+      "note": "",
+      "book_order": 1041
+    },
+    {
+      "title_ja": "からこそ",
+      "reading_romaji": "kara koso",
+      "gloss": "precisely because",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%e3%82%89%e3%81%93%e3%81%9d-kara-koso/",
+      "note": "",
+      "book_order": 1042
+    },
+    {
+      "title_ja": "から見ると",
+      "reading_romaji": "kara miru to",
+      "gloss": "from the point of view of, by the look of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%e3%82%89%e3%81%bf%e3%82%8b%e3%81%a8-kara-miru-to/",
+      "note": "",
+      "book_order": 1043
+    },
+    {
+      "title_ja": "からには",
+      "reading_romaji": "kara niwa",
+      "gloss": "now that, since, so long as",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%e3%82%89%e3%81%ab%e3%81%af-kara-niwa/",
+      "note": "",
+      "book_order": 1044
+    },
+    {
+      "title_ja": "からして",
+      "reading_romaji": "kara shite",
+      "gloss": "judging from, based on",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%e3%82%89%e3%81%97%e3%81%a6-kara-shite/",
+      "note": "",
+      "book_order": 1045
+    },
+    {
+      "title_ja": "からすると/からすれば",
+      "reading_romaji": "kara suru to/kara sureba",
+      "gloss": "judging from, considering",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%e3%82%89%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8b%e3%82%89%e3%81%99%e3%82%8c%e3%81%b0-kara-suru-tokara-sureba/",
+      "note": "",
+      "book_order": 1046
+    },
+    {
+      "title_ja": "からといって",
+      "reading_romaji": "kara to itte",
+      "gloss": "just because",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%e3%82%89%e3%81%a8%e3%81%84%e3%81%a3%e3%81%a6-kara-to-itte/",
+      "note": "",
+      "book_order": 1047
+    },
+    {
+      "title_ja": "かと思ったら/かと思うと",
+      "reading_romaji": "ka to omottara/ka to omou to",
+      "gloss": "then again, just when, no sooner than",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%e3%81%a8%e3%81%8a%e3%82%82%e3%81%a3%e3%81%9f%e3%82%89%e3%81%8b%e3%81%a8%e3%81%8a%e3%82%82%e3%81%86%e3%81%a8-ka-to-omottaraka-to-omou-to/",
+      "note": "",
+      "book_order": 1048
+    },
+    {
+      "title_ja": "限り",
+      "reading_romaji": "kagiri",
+      "gloss": "as long as, while… is the case",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8b%e3%81%8e%e3%82%8a-kagiri/",
+      "note": "",
+      "book_order": 1049
+    },
+    {
+      "title_ja": "気",
+      "reading_romaji": "ki",
+      "gloss": "feel like",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e6%b0%97-ki/",
+      "note": "",
+      "book_order": 1050
+    },
+    {
+      "title_ja": "っこない",
+      "reading_romaji": "kkonai",
+      "gloss": "no chance of, … is definitely not possible",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a3%e3%81%93%e3%81%aa%e3%81%84-kkonai/",
+      "note": "",
+      "book_order": 1051
+    },
+    {
+      "title_ja": "ことだから",
+      "reading_romaji": "koto dakara",
+      "gloss": "it is exactly because",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%93%e3%81%a8%e3%81%a0%e3%81%8b%e3%82%89-koto-dakara/",
+      "note": "",
+      "book_order": 1052
+    },
+    {
+      "title_ja": "ことから",
+      "reading_romaji": "koto kara",
+      "gloss": "from the fact that",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n3-grammar-%e3%81%93%e3%81%a8%e3%81%8b%e3%82%89-koto-kara/",
+      "note": "",
+      "book_order": 1053
+    },
+    {
+      "title_ja": "ことなく",
+      "reading_romaji": "koto naku",
+      "gloss": "without doing something even once",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%93%e3%81%a8%e3%81%aa%e3%81%8f-koto-naku/",
+      "note": "",
+      "book_order": 1054
+    },
+    {
+      "title_ja": "ことになっている",
+      "reading_romaji": "koto ni natte iru",
+      "gloss": "to be expected to, to be scheduled to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%93%e3%81%a8%e3%81%ab%e3%81%aa%e3%81%a3%e3%81%a6%e3%81%84%e3%82%8b-koto-ni-natte-iru/",
+      "note": "",
+      "book_order": 1055
+    },
+    {
+      "title_ja": "ことにはならない",
+      "reading_romaji": "koto niwa naranai",
+      "gloss": "just because… doesn’t mean…",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%93%e3%81%a8%e3%81%ab%e3%81%af%e3%81%aa%e3%82%89%e3%81%aa%e3%81%84-koto-niwa-naranai/",
+      "note": "",
+      "book_order": 1056
+    },
+    {
+      "title_ja": "ことは〜が",
+      "reading_romaji": "koto wa〜ga",
+      "gloss": "although, but",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%93%e3%81%a8%e3%81%af%ef%bd%9e%e3%81%8c-koto-waga/",
+      "note": "",
+      "book_order": 1057
+    },
+    {
+      "title_ja": "まい",
+      "reading_romaji": "mai",
+      "gloss": "won’t, intend not to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%be%e3%81%84-mai/",
+      "note": "",
+      "book_order": 1058
+    },
+    {
+      "title_ja": "まったく〜ない",
+      "reading_romaji": "mattaku〜nai",
+      "gloss": "not~at all",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%be%e3%81%a3%e3%81%9f%e3%81%8f%ef%bd%9e%e3%81%aa%e3%81%84-mattakunai/",
+      "note": "",
+      "book_order": 1059
+    },
+    {
+      "title_ja": "も〜ば〜も",
+      "reading_romaji": "mo〜ba〜mo",
+      "gloss": "…and…",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%82%ef%bd%9e%e3%81%b0%ef%bd%9e%e3%82%82-mobamo/",
+      "note": "",
+      "book_order": 1060
+    },
+    {
+      "title_ja": "もかまわず",
+      "reading_romaji": "mo kamawazu",
+      "gloss": "without worrying about",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%82%e3%81%8b%e3%81%be%e3%82%8f%e3%81%9a-mo-kamawazu/",
+      "note": "",
+      "book_order": 1061
+    },
+    {
+      "title_ja": "ものだから",
+      "reading_romaji": "mono dakara",
+      "gloss": "because, the reason is",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%82%e3%81%ae%e3%81%a0%e3%81%8b%e3%82%89-mono-dakara/",
+      "note": "",
+      "book_order": 1062
+    },
+    {
+      "title_ja": "ものではない",
+      "reading_romaji": "mono dewa nai",
+      "gloss": "shouldn’t do something, it’s impossible to do something",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%82%e3%81%ae%e3%81%a7%e3%81%af%e3%81%aa%e3%81%84-mono-dewa-nai/",
+      "note": "",
+      "book_order": 1063
+    },
+    {
+      "title_ja": "ものがある",
+      "reading_romaji": "mono ga aru",
+      "gloss": "sentence-ending expression of strong judgement",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%82%e3%81%ae%e3%81%8c%e3%81%82%e3%82%8b-mono-ga-aru/",
+      "note": "",
+      "book_order": 1064
+    },
+    {
+      "title_ja": "ものか",
+      "reading_romaji": "mono ka",
+      "gloss": "as if",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%82%e3%81%ae%e3%81%8b-mono-ka/",
+      "note": "",
+      "book_order": 1065
+    },
+    {
+      "title_ja": "ものなら",
+      "reading_romaji": "mono nara",
+      "gloss": "if one can do something",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%82%e3%81%ae%e3%81%aa%e3%82%89-mono-nara/",
+      "note": "",
+      "book_order": 1066
+    },
+    {
+      "title_ja": "ものの",
+      "reading_romaji": "mono no",
+      "gloss": "but, although",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%82%e3%81%ae%e3%81%ae-mono-no/",
+      "note": "",
+      "book_order": 1067
+    },
+    {
+      "title_ja": "もっとも",
+      "reading_romaji": "motto mo",
+      "gloss": "but then, although",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%82%e3%81%a3%e3%81%a8%e3%82%82-motto-mo/",
+      "note": "",
+      "book_order": 1068
+    },
+    {
+      "title_ja": "もう少しで",
+      "reading_romaji": "mou sukoshi de",
+      "gloss": "almost, nearly",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%82%e3%81%86%e3%81%99%e3%81%93%e3%81%97%e3%81%a7-mou-sukoshi-de/",
+      "note": "",
+      "book_order": 1069
+    },
+    {
+      "title_ja": "むしろ",
+      "reading_romaji": "mushiro",
+      "gloss": "rather, instead",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%80%e3%81%97%e3%82%8d-mushiro/",
+      "note": "",
+      "book_order": 1070
+    },
+    {
+      "title_ja": "んだって",
+      "reading_romaji": "ndatte",
+      "gloss": "I heard that",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n3-grammar-%e3%82%93%e3%81%a0%e3%81%a3%e3%81%a6-ndatte/",
+      "note": "",
+      "book_order": 1071
+    },
+    {
+      "title_ja": "中を",
+      "reading_romaji": "naka o",
+      "gloss": "in, on",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%aa%e3%81%8b%e3%82%92%e3%81%aa%e3%81%8b%e3%81%a7%e3%81%af-naka-onaka-dewa/",
+      "note": "",
+      "book_order": 1072
+    },
+    {
+      "title_ja": "なお",
+      "reading_romaji": "nao",
+      "gloss": "furthermore, still, yet [used to add more information to the sentence",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%aa%e3%81%8a-nao/",
+      "note": "",
+      "book_order": 1073
+    },
+    {
+      "title_ja": "ないではいられない",
+      "reading_romaji": "nai dewa irarenai",
+      "gloss": "can’t help but feel, can’t help but do",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%aa%e3%81%84%e3%81%a7%e3%81%af%e3%81%84%e3%82%89%e3%82%8c%e3%81%aa%e3%81%84-nai-dewa-irarenai/",
+      "note": "",
+      "book_order": 1074
+    },
+    {
+      "title_ja": "ないことには〜ない",
+      "reading_romaji": "nai koto niwa〜nai",
+      "gloss": "unless you do something",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%aa%e3%81%84%e3%81%93%e3%81%a8%e3%81%ab%e3%81%af%ef%bd%9e%e3%81%aa%e3%81%84-nai-koto-niwanai/",
+      "note": "",
+      "book_order": 1075
+    },
+    {
+      "title_ja": "なくはない",
+      "reading_romaji": "naku wa nai",
+      "gloss": "it’s not that…, can, may be",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%aa%e3%81%8f%e3%81%af%e3%81%aa%e3%81%84-naku-wa-nai/",
+      "note": "",
+      "book_order": 1076
+    },
+    {
+      "title_ja": "なにも〜ない",
+      "reading_romaji": "nani mo〜nai",
+      "gloss": "no need to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%aa%e3%81%ab%e3%82%82%ef%bd%9e%e3%81%aa%e3%81%84-nani-monai/",
+      "note": "",
+      "book_order": 1077
+    },
+    {
+      "title_ja": "ねばならない",
+      "reading_romaji": "neba naranai",
+      "gloss": "have to, must",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ad%e3%81%b0%e3%81%aa%e3%82%89%e3%81%aa%e3%81%84-neba-naranai/",
+      "note": "",
+      "book_order": 1078
+    },
+    {
+      "title_ja": "にあたり",
+      "reading_romaji": "ni atari",
+      "gloss": "at the time, on the occasion of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%82%e3%81%9f%e3%81%a3%e3%81%a6%e3%81%ab%e3%81%82%e3%81%9f%e3%82%8a-ni-atatteni-atari/",
+      "note": "",
+      "book_order": 1079
+    },
+    {
+      "title_ja": "に反して",
+      "reading_romaji": "ni han shite",
+      "gloss": "against, contrary to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%af%e3%82%93%e3%81%97%e3%81%a6-ni-hanshite/",
+      "note": "",
+      "book_order": 1080
+    },
+    {
+      "title_ja": "にほかならない",
+      "reading_romaji": "ni hoka naranai",
+      "gloss": "nothing but, none other than",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%bb%e3%81%8b%e3%81%aa%e3%82%89%e3%81%aa%e3%81%84-ni-hoka-naranai/",
+      "note": "",
+      "book_order": 1081
+    },
+    {
+      "title_ja": "に限って",
+      "reading_romaji": "ni kagitte",
+      "gloss": "only, particularly when",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%8b%e3%81%8e%e3%81%a3%e3%81%a6-ni-kagitte/",
+      "note": "",
+      "book_order": 1082
+    },
+    {
+      "title_ja": "に限らず",
+      "reading_romaji": "ni kagirazu",
+      "gloss": "not just, not only… but also",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%8b%e3%81%8e%e3%82%89%e3%81%9a-ni-kagirazu/",
+      "note": "",
+      "book_order": 1083
+    },
+    {
+      "title_ja": "に限る",
+      "reading_romaji": "ni kagiru",
+      "gloss": "nothing better than, there’s nothing like",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e9%99%90%e3%82%8b-ni-kagiru/",
+      "note": "",
+      "book_order": 1084
+    },
+    {
+      "title_ja": "にかかわる",
+      "reading_romaji": "ni kakawaru",
+      "gloss": "to relate to, to have to do with",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%8b%e3%81%8b%e3%82%8f%e3%82%8b-ni-kakawaru/",
+      "note": "",
+      "book_order": 1085
+    },
+    {
+      "title_ja": "にかかわらず",
+      "reading_romaji": "ni kakawarazu",
+      "gloss": "regardless of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%8b%e3%81%8b%e3%82%8f%e3%82%89%e3%81%9a-ni-kakawarazu/",
+      "note": "",
+      "book_order": 1086
+    },
+    {
+      "title_ja": "に決まっている",
+      "reading_romaji": "ni kimatte iru",
+      "gloss": "I’m sure that…",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%8d%e3%81%be%e3%81%a3%e3%81%a6%e3%81%84%e3%82%8b-ni-kimatte-iru/",
+      "note": "",
+      "book_order": 1087
+    },
+    {
+      "title_ja": "に越したことはない",
+      "reading_romaji": "ni koshita koto wa nai",
+      "gloss": "it’s best that, there’s nothing better than",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-japanese-grammar-n2-%e3%81%ab%e8%b6%8a%e3%81%97%e3%81%9f%e3%81%93%e3%81%a8%e3%81%af%e3%81%aa%e3%81%84/",
+      "note": "",
+      "book_order": 1088
+    },
+    {
+      "title_ja": "に応えて",
+      "reading_romaji": "ni kotaete",
+      "gloss": "in response to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%93%e3%81%9f%e3%81%88%e3%81%a6ni-kotaete/",
+      "note": "",
+      "book_order": 1089
+    },
+    {
+      "title_ja": "に加えて",
+      "reading_romaji": "ni kuwaete",
+      "gloss": "in addition to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%8f%e3%82%8f%e3%81%88%e3%81%a6-ni-kuwaete/",
+      "note": "",
+      "book_order": 1090
+    },
+    {
+      "title_ja": "に基づいて",
+      "reading_romaji": "ni motozuite",
+      "gloss": "based on",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%82%82%e3%81%a8%e3%81%a5%e3%81%84%e3%81%a6-ni-motozuite/",
+      "note": "",
+      "book_order": 1091
+    },
+    {
+      "title_ja": "にもかかわらず",
+      "reading_romaji": "nimo kakawarazu",
+      "gloss": "despite, in spite of, although",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%82%82%e3%81%8b%e3%81%8b%e3%82%8f%e3%82%89%e3%81%9a-nimo-kakawarazu/",
+      "note": "",
+      "book_order": 1092
+    },
+    {
+      "title_ja": "に向かって",
+      "reading_romaji": "ni mukatte",
+      "gloss": "towards, to face, to head to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e5%90%91%e3%81%8b%e3%81%a3%e3%81%a6-ni-mukatte/",
+      "note": "",
+      "book_order": 1093
+    },
+    {
+      "title_ja": "に応じて",
+      "reading_romaji": "ni oujite",
+      "gloss": "depending on, in accordance with",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%8a%e3%81%86%e3%81%98%e3%81%a6-ni-oujite/",
+      "note": "",
+      "book_order": 1094
+    },
+    {
+      "title_ja": "に際して",
+      "reading_romaji": "ni sai shite",
+      "gloss": "on the occasion of, at the time of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%95%e3%81%84%e3%81%97%e3%81%a6-ni-saishite/",
+      "note": "",
+      "book_order": 1095
+    },
+    {
+      "title_ja": "に先立ち",
+      "reading_romaji": "ni sakidachi",
+      "gloss": "before, prior to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%95%e3%81%8d%e3%81%a0%e3%81%a1-ni-sakidachi/",
+      "note": "",
+      "book_order": 1096
+    },
+    {
+      "title_ja": "にしろ/にせよ",
+      "reading_romaji": "ni shiro/ni seyo",
+      "gloss": "though, even if, whether… or",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%97%e3%82%8d%e3%81%ab%e3%81%9b%e3%82%88-ni-shironi-seyo/",
+      "note": "",
+      "book_order": 1097
+    },
+    {
+      "title_ja": "にしろ〜にしろ",
+      "reading_romaji": "ni shiro〜ni shiro",
+      "gloss": "whether… or",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%97%e3%82%8d%ef%bd%9e%e3%81%ab%e3%81%97%e3%82%8d-ni-shironi-shiro/",
+      "note": "",
+      "book_order": 1098
+    },
+    {
+      "title_ja": "に従って",
+      "reading_romaji": "ni shitagatte",
+      "gloss": "as, therefore",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%97%e3%81%9f%e3%81%8c%e3%81%a3%e3%81%a6-shitagatte/",
+      "note": "",
+      "book_order": 1099
+    },
+    {
+      "title_ja": "にしたら",
+      "reading_romaji": "ni shitara",
+      "gloss": "from the point of view of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%97%e3%81%9f%e3%82%89-ni-shitara/",
+      "note": "",
+      "book_order": 1100
+    },
+    {
+      "title_ja": "にしても〜にしても",
+      "reading_romaji": "ni shite mo〜ni shite mo",
+      "gloss": "regardless of whether",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%97%e3%81%a6%e3%82%82%ef%bd%9e%e3%81%ab%e3%81%97%e3%81%a6%e3%82%82-ni-shitemoni-shitemo/",
+      "note": "",
+      "book_order": 1101
+    },
+    {
+      "title_ja": "に相違ない",
+      "reading_romaji": "ni soui nai",
+      "gloss": "without a doubt, certain, sure",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%9d%e3%81%86%e3%81%84%e3%81%aa%e3%81%84-ni-soui-nai/",
+      "note": "",
+      "book_order": 1102
+    },
+    {
+      "title_ja": "に沿って",
+      "reading_romaji": "ni sotte",
+      "gloss": "along with, in accordance with",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%9d%e3%81%a3%e3%81%a6-ni-sotte/",
+      "note": "",
+      "book_order": 1103
+    },
+    {
+      "title_ja": "に過ぎない",
+      "reading_romaji": "ni suginai",
+      "gloss": "no more than, just, merely",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e9%81%8e%e3%81%8e%e3%81%aa%e3%81%84-ni-suginai/",
+      "note": "",
+      "book_order": 1104
+    },
+    {
+      "title_ja": "にて",
+      "reading_romaji": "nite",
+      "gloss": "in, at",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%a6-nite/",
+      "note": "",
+      "book_order": 1105
+    },
+    {
+      "title_ja": "に伴って",
+      "reading_romaji": "ni tomonatte",
+      "gloss": "as, due to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%a8%e3%82%82%e3%81%aa%e3%81%a3%e3%81%a6-ni-tomonatte/",
+      "note": "",
+      "book_order": 1106
+    },
+    {
+      "title_ja": "につけ",
+      "reading_romaji": "ni tsuke",
+      "gloss": "both… and…, every time something happens",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%a4%e3%81%91-ni-tsuke/",
+      "note": "",
+      "book_order": 1107
+    },
+    {
+      "title_ja": "につき",
+      "reading_romaji": "ni tsuki",
+      "gloss": "due to, because, per, each",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%a4%e3%81%8d-ni-tsuki/",
+      "note": "",
+      "book_order": 1108
+    },
+    {
+      "title_ja": "には",
+      "reading_romaji": "niwa",
+      "gloss": "in order to, for",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%81%af-niwa/",
+      "note": "",
+      "book_order": 1109
+    },
+    {
+      "title_ja": "にわたって",
+      "reading_romaji": "ni watatte",
+      "gloss": "throughout, over (a period of time)",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ab%e3%82%8f%e3%81%9f%e3%81%a3%e3%81%a6-ni-watatte/",
+      "note": "",
+      "book_order": 1110
+    },
+    {
+      "title_ja": "のももっともだ",
+      "reading_romaji": "no mo mottomo da",
+      "gloss": "no wonder, … is only natural",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ae%e3%82%82%e3%82%82%e3%81%a3%e3%81%a8%e3%82%82%e3%81%a0-no-mo-motto-mo-da/",
+      "note": "",
+      "book_order": 1111
+    },
+    {
+      "title_ja": "のも当然だ",
+      "reading_romaji": "no mo touzen da",
+      "gloss": "it’s only natural that, no wonder",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ae%e3%82%82%e3%81%a8%e3%81%86%e3%81%9c%e3%82%93%e3%81%a0-no-mo-touzen-da/",
+      "note": "",
+      "book_order": 1112
+    },
+    {
+      "title_ja": "のもとで",
+      "reading_romaji": "no moto de",
+      "gloss": "under",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ae%e3%82%82%e3%81%a8%e3%81%a7-no-moto-de/",
+      "note": "",
+      "book_order": 1113
+    },
+    {
+      "title_ja": "のみならず",
+      "reading_romaji": "nominarazu",
+      "gloss": "not only, besides, as well",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ae%e3%81%bf%e3%81%aa%e3%82%89%e3%81%9a-nominarazu/",
+      "note": "",
+      "book_order": 1114
+    },
+    {
+      "title_ja": "抜きで/抜きにして",
+      "reading_romaji": "nuki de/nuki ni shite",
+      "gloss": "leaving out, cutting out",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ac%e3%81%8d%e3%81%a7%e3%81%ac%e3%81%8d%e3%81%ab%e3%81%97%e3%81%a6-nuki-denuki-ni-shite/",
+      "note": "",
+      "book_order": 1115
+    },
+    {
+      "title_ja": "抜く",
+      "reading_romaji": "nuku",
+      "gloss": "to do something to the end",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%ac%e3%81%8f-nuku/",
+      "note": "",
+      "book_order": 1116
+    },
+    {
+      "title_ja": "お〜願う",
+      "reading_romaji": "o〜negau",
+      "gloss": "could you please",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8a%ef%bd%9e%e9%a1%98%e3%81%86-onegau/",
+      "note": "",
+      "book_order": 1117
+    },
+    {
+      "title_ja": "を〜として",
+      "reading_romaji": "o〜to shite",
+      "gloss": "as",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%92%ef%bd%9e%e3%81%a8%e3%81%99%e3%82%8b%e3%82%92%ef%bd%9e%e3%81%a8%e3%81%97%e3%81%a6-oto-suruoto-shite/",
+      "note": "",
+      "book_order": 1118
+    },
+    {
+      "title_ja": "をこめて",
+      "reading_romaji": "o komete",
+      "gloss": "filled with",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%92%e3%81%93%e3%82%81%e3%81%a6-o-komete/",
+      "note": "",
+      "book_order": 1119
+    },
+    {
+      "title_ja": "をきっかけに",
+      "reading_romaji": "o kikkake ni",
+      "gloss": "with… as a start, as a result of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%92%e3%81%8d%e3%81%a3%e3%81%8b%e3%81%91%e3%81%ab-o-kikkake-ni/",
+      "note": "",
+      "book_order": 1120
+    },
+    {
+      "title_ja": "を契機に",
+      "reading_romaji": "o keiki ni",
+      "gloss": "as a good opportunity to, as a result of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%92%e3%81%91%e3%81%84%e3%81%8d%e3%81%ab-o-keiki-ni/",
+      "note": "",
+      "book_order": 1121
+    },
+    {
+      "title_ja": "をめぐって",
+      "reading_romaji": "o megutte",
+      "gloss": "concerning, in regard to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%92%e3%82%81%e3%81%90%e3%81%a3%e3%81%a6-o-megutte/",
+      "note": "",
+      "book_order": 1122
+    },
+    {
+      "title_ja": "をもとに",
+      "reading_romaji": "o moto ni",
+      "gloss": "based on, from",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%92%e3%82%82%e3%81%a8%e3%81%ab-o-moto-ni/",
+      "note": "",
+      "book_order": 1123
+    },
+    {
+      "title_ja": "を除いて",
+      "reading_romaji": "o nozoite",
+      "gloss": "except, with the exception of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%92%e3%81%ae%e3%81%9e%e3%81%84%e3%81%a6-o-nozoite/",
+      "note": "",
+      "book_order": 1124
+    },
+    {
+      "title_ja": "を問わず",
+      "reading_romaji": "o towazu",
+      "gloss": "regardless of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%92%e3%81%a8%e3%82%8f%e3%81%9a-o-towazu/",
+      "note": "",
+      "book_order": 1125
+    },
+    {
+      "title_ja": "を通じて/を通して",
+      "reading_romaji": "o tsuujite/o tooshite",
+      "gloss": "via, through",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%92%e3%81%a4%e3%81%86%e3%81%98%e3%81%a6%e3%82%92%e3%81%a8%e3%81%8a%e3%81%97%e3%81%a6-o-tsuujite-o-tooshite/",
+      "note": "",
+      "book_order": 1126
+    },
+    {
+      "title_ja": "おまけに",
+      "reading_romaji": "omake ni",
+      "gloss": "to make matters worse",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8a%e3%81%be%e3%81%91%e3%81%ab-omake-ni/",
+      "note": "",
+      "book_order": 1127
+    },
+    {
+      "title_ja": "恐れがある",
+      "reading_romaji": "osore ga aru",
+      "gloss": "there are fears that",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%8a%e3%81%9d%e3%82%8c%e3%81%8c%e3%81%82%e3%82%8b-osore-ga-aru/",
+      "note": "",
+      "book_order": 1128
+    },
+    {
+      "title_ja": "ろくに〜ない",
+      "reading_romaji": "roku ni〜nai",
+      "gloss": "not doing something properly",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%8d%e3%81%8f%e3%81%ab%ef%bd%9e%e3%81%aa%e3%81%84-roku-ninai/",
+      "note": "",
+      "book_order": 1129
+    },
+    {
+      "title_ja": "際に",
+      "reading_romaji": "sai ni",
+      "gloss": "at the time, in case of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%95%e3%81%84%e3%81%ab-sai-ni/",
+      "note": "",
+      "book_order": 1130
+    },
+    {
+      "title_ja": "幸い",
+      "reading_romaji": "saiwai",
+      "gloss": "luckily, fortunately",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%95%e3%81%84%e3%82%8f%e3%81%84-saiwai/",
+      "note": "",
+      "book_order": 1131
+    },
+    {
+      "title_ja": "さらに",
+      "reading_romaji": "sara ni",
+      "gloss": "furthermore, again, more and more",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%95%e3%82%89%e3%81%ab-sara-ni/",
+      "note": "",
+      "book_order": 1132
+    },
+    {
+      "title_ja": "せいぜい",
+      "reading_romaji": "seizei",
+      "gloss": "at the most, at best",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9b%e3%81%84%e3%81%9c%e3%81%84-seizei/",
+      "note": "",
+      "book_order": 1133
+    },
+    {
+      "title_ja": "せめて",
+      "reading_romaji": "semete",
+      "gloss": "at least, at most",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9b%e3%82%81%e3%81%a6-semete/",
+      "note": "",
+      "book_order": 1134
+    },
+    {
+      "title_ja": "次第",
+      "reading_romaji": "shidai",
+      "gloss": "as soon as",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n3-grammar-%e3%81%97%e3%81%a0%e3%81%84-shidai/",
+      "note": "",
+      "book_order": 1135
+    },
+    {
+      "title_ja": "次第だ/次第で",
+      "reading_romaji": "shidai da/shidai de",
+      "gloss": "depending on, so",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%97%e3%81%a0%e3%81%84%e3%81%a0%e3%81%97%e3%81%a0%e3%81%84%e3%81%a7-shidai-dashidai-de/",
+      "note": "",
+      "book_order": 1136
+    },
+    {
+      "title_ja": "しかも",
+      "reading_romaji": "shikamo",
+      "gloss": "moreover, furthermore",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%97%e3%81%8b%e3%82%82-shikamo/",
+      "note": "",
+      "book_order": 1137
+    },
+    {
+      "title_ja": "したがって",
+      "reading_romaji": "shitagatte",
+      "gloss": "therefore, accordingly",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%97%e3%81%9f%e3%81%8c%e3%81%a3%e3%81%a6-shitagatte/",
+      "note": "",
+      "book_order": 1138
+    },
+    {
+      "title_ja": "その上",
+      "reading_romaji": "sono ue",
+      "gloss": "besides, in addition, furthermore",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9d%e3%81%ae%e3%81%86%e3%81%88-sono-ue/",
+      "note": "",
+      "book_order": 1139
+    },
+    {
+      "title_ja": "それなのに",
+      "reading_romaji": "sore na noni",
+      "gloss": "and yet, despite this",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9d%e3%82%8c%e3%81%aa%e3%81%ae%e3%81%ab-sore-na-noni/",
+      "note": "",
+      "book_order": 1140
+    },
+    {
+      "title_ja": "それなら",
+      "reading_romaji": "sore nara",
+      "gloss": "then, if that’s the case",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9d%e3%82%8c%e3%81%aa%e3%82%89-sore-nara/",
+      "note": "",
+      "book_order": 1141
+    },
+    {
+      "title_ja": "それにしても",
+      "reading_romaji": "sore ni shite mo",
+      "gloss": "nevertheless, even so",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9d%e3%82%8c%e3%81%ab%e3%81%97%e3%81%a6%e3%82%82-sore-ni-shite-mo/",
+      "note": "",
+      "book_order": 1142
+    },
+    {
+      "title_ja": "それとも",
+      "reading_romaji": "sore tomo",
+      "gloss": "or, or else",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9d%e3%82%8c%e3%81%a8%e3%82%82-soretomo/",
+      "note": "",
+      "book_order": 1143
+    },
+    {
+      "title_ja": "そういえば",
+      "reading_romaji": "sou ieba",
+      "gloss": "come to think of it",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9d%e3%81%86%e3%81%84%e3%81%88%e3%81%b0-sou-ieba/",
+      "note": "",
+      "book_order": 1144
+    },
+    {
+      "title_ja": "そうにない",
+      "reading_romaji": "sou ni nai",
+      "gloss": "extremely unlikely to, showing no signs of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9d%e3%81%86%e3%81%ab%e3%81%aa%e3%81%84-sou-ni-nai/",
+      "note": "",
+      "book_order": 1145
+    },
+    {
+      "title_ja": "そうすると",
+      "reading_romaji": "sou suru to",
+      "gloss": "having done that",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9d%e3%81%86%e3%81%99%e3%82%8b%e3%81%a8-sou-suru-to/",
+      "note": "",
+      "book_order": 1146
+    },
+    {
+      "title_ja": "少しも〜ない",
+      "reading_romaji": "sukoshi mo〜nai",
+      "gloss": "not one bit, not even a little",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%99%e3%81%93%e3%81%97%e3%82%82%ef%bd%9e%e3%81%aa%e3%81%84-sukoshi-monai/",
+      "note": "",
+      "book_order": 1147
+    },
+    {
+      "title_ja": "すなわち",
+      "reading_romaji": "sunawachi",
+      "gloss": "in other words",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%99%e3%81%aa%e3%82%8f%e3%81%a1-sunawachi/",
+      "note": "",
+      "book_order": 1148
+    },
+    {
+      "title_ja": "たあげく",
+      "reading_romaji": "ta ageku",
+      "gloss": "to end up, finally",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9f%e3%81%82%e3%81%92%e3%81%8f-ta-ageku/",
+      "note": "",
+      "book_order": 1149
+    },
+    {
+      "title_ja": "直ちに",
+      "reading_romaji": "tadachi ni",
+      "gloss": "at once, immediately",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9f%e3%81%a0%e3%81%a1%e3%81%ab-tadachi-ni/",
+      "note": "",
+      "book_order": 1150
+    },
+    {
+      "title_ja": "たまえ",
+      "reading_romaji": "tamae",
+      "gloss": "order somebody to do something",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9f%e3%81%be%e3%81%88-tamae/",
+      "note": "",
+      "book_order": 1151
+    },
+    {
+      "title_ja": "た末/の末",
+      "reading_romaji": "ta sue/no sue",
+      "gloss": "as a conclusion of",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9f%e3%81%99%e3%81%88%e3%81%ae%e3%81%99%e3%81%88-ta-sueno-sue/",
+      "note": "",
+      "book_order": 1152
+    },
+    {
+      "title_ja": "たって",
+      "reading_romaji": "tatte",
+      "gloss": "even if, even though, no matter how",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9f%e3%81%a3%e3%81%a6-tatte/",
+      "note": "",
+      "book_order": 1153
+    },
+    {
+      "title_ja": "てばかりはいられない",
+      "reading_romaji": "te bakari wa irarenai",
+      "gloss": "can’t keep doing something",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%b0%e3%81%8b%e3%82%8a%e3%81%af%e3%81%84%e3%82%89%e3%82%8c%e3%81%aa%e3%81%84-te-bakari-wa-irarenai/",
+      "note": "",
+      "book_order": 1154
+    },
+    {
+      "title_ja": "てでも",
+      "reading_romaji": "te demo",
+      "gloss": "even if one has to, by all means",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%a7%e3%82%82-te-demo/",
+      "note": "",
+      "book_order": 1155
+    },
+    {
+      "title_ja": "て以来",
+      "reading_romaji": "te irai",
+      "gloss": "since",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%84%e3%82%89%e3%81%84-te-irai/",
+      "note": "",
+      "book_order": 1156
+    },
+    {
+      "title_ja": "ていては",
+      "reading_romaji": "te ite wa",
+      "gloss": "if one keeps doing something",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%84%e3%81%a6%e3%81%af-te-ite-wa/",
+      "note": "",
+      "book_order": 1157
+    },
+    {
+      "title_ja": "てからでないと",
+      "reading_romaji": "te kara denai to",
+      "gloss": "unless, until",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%8b%e3%82%89%e3%81%a7%e3%81%aa%e3%81%84%e3%81%a8-tekara-denai-to/",
+      "note": "",
+      "book_order": 1158
+    },
+    {
+      "title_ja": "てこそ",
+      "reading_romaji": "te koso",
+      "gloss": "now that, since",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%93%e3%81%9d-te-koso/",
+      "note": "",
+      "book_order": 1159
+    },
+    {
+      "title_ja": "手前",
+      "reading_romaji": "temae",
+      "gloss": "before, in front of, from one’s standpoint",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%be%e3%81%88-temae/",
+      "note": "",
+      "book_order": 1160
+    },
+    {
+      "title_ja": "てならない",
+      "reading_romaji": "te naranai",
+      "gloss": "very, extremely",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%aa%e3%82%89%e3%81%aa%e3%81%84-te-naranai/",
+      "note": "",
+      "book_order": 1161
+    },
+    {
+      "title_ja": "てしょうがない",
+      "reading_romaji": "te shou ga nai",
+      "gloss": "very, extremely",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%97%e3%82%87%e3%81%86%e3%81%8c%e3%81%aa%e3%81%84-te-shou-ga-nai/",
+      "note": "",
+      "book_order": 1162
+    },
+    {
+      "title_ja": "てたまらない",
+      "reading_romaji": "te tamaranai",
+      "gloss": "very, extremely, can’t help but do",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%9f%e3%81%be%e3%82%89%e3%81%aa%e3%81%84-te-tamaranai/",
+      "note": "",
+      "book_order": 1163
+    },
+    {
+      "title_ja": "て当然だ",
+      "reading_romaji": "te touzen da",
+      "gloss": "natural, as a matter of course",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%a8%e3%81%86%e3%81%9c%e3%82%93%e3%81%a0-te-touzen-da/",
+      "note": "",
+      "book_order": 1164
+    },
+    {
+      "title_ja": "ては",
+      "reading_romaji": "tewa",
+      "gloss": "if, since, one after another",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%af-tewa/",
+      "note": "",
+      "book_order": 1165
+    },
+    {
+      "title_ja": "てはいられない",
+      "reading_romaji": "tewa irarenai",
+      "gloss": "can’t afford to, unable to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%af%e3%81%84%e3%82%89%e3%82%8c%e3%81%aa%e3%81%84-tewa-irarenai/",
+      "note": "",
+      "book_order": 1166
+    },
+    {
+      "title_ja": "てはならない",
+      "reading_romaji": "tewa naranai",
+      "gloss": "must not, cannot, should not",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a6%e3%81%af%e3%81%aa%e3%82%89%e3%81%aa%e3%81%84-tewa-naranai/",
+      "note": "",
+      "book_order": 1167
+    },
+    {
+      "title_ja": "と同時に",
+      "reading_romaji": "to douji ni",
+      "gloss": "at the same time as",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%a9%e3%81%86%e3%81%98%e3%81%ab-to-douji-ni/",
+      "note": "",
+      "book_order": 1168
+    },
+    {
+      "title_ja": "というふうに",
+      "reading_romaji": "to iu fuu ni",
+      "gloss": "in such a way that",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%84%e3%81%86%e3%81%b5%e3%81%86%e3%81%ab-to-iu-fuu-ni/",
+      "note": "",
+      "book_order": 1169
+    },
+    {
+      "title_ja": "ということは",
+      "reading_romaji": "to iu koto wa",
+      "gloss": "that is to say",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%84%e3%81%86%e3%81%93%e3%81%a8%e3%81%af-to-iu-koto-wa/",
+      "note": "",
+      "book_order": 1170
+    },
+    {
+      "title_ja": "というものだ",
+      "reading_romaji": "to iu mono da",
+      "gloss": "something like…, something called…",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%84%e3%81%86%e3%82%82%e3%81%ae%e3%81%a0-to-iu-mono-da/",
+      "note": "",
+      "book_order": 1171
+    },
+    {
+      "title_ja": "というものでもない",
+      "reading_romaji": "to iu mono demo nai",
+      "gloss": "there is no guarantee that…, not necessarily",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%84%e3%81%86%e3%82%82%e3%81%ae%e3%81%a7%e3%82%82%e3%81%aa%e3%81%84%e3%81%a8%e3%81%84%e3%81%86%e3%82%82%e3%81%ae%e3%81%a7%e3%81%af%e3%81%aa%e3%81%84-to-iu-mono-d/",
+      "note": "",
+      "book_order": 1172
+    },
+    {
+      "title_ja": "といった",
+      "reading_romaji": "to itta",
+      "gloss": "such… as",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%84%e3%81%a3%e3%81%9f-to-itta/",
+      "note": "",
+      "book_order": 1173
+    },
+    {
+      "title_ja": "とか",
+      "reading_romaji": "toka",
+      "gloss": "I heard that…",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%8b-toka/",
+      "note": "",
+      "book_order": 1174
+    },
+    {
+      "title_ja": "と考えられる",
+      "reading_romaji": "to kangaerareru",
+      "gloss": "one can think that…",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e8%80%83%e3%81%88%e3%82%89%e3%82%8c%e3%82%8b-to-kangaerareru/",
+      "note": "",
+      "book_order": 1175
+    },
+    {
+      "title_ja": "ところだった",
+      "reading_romaji": "tokoro datta",
+      "gloss": "was just about to do something",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%93%e3%82%8d%e3%81%a0%e3%81%a3%e3%81%9f-tokoro-datta/",
+      "note": "",
+      "book_order": 1176
+    },
+    {
+      "title_ja": "ところに/ところへ",
+      "reading_romaji": "tokoro ni/tokoro e",
+      "gloss": "at the time",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%93%e3%82%8d%e3%81%ab-tokoro-ni/",
+      "note": "",
+      "book_order": 1177
+    },
+    {
+      "title_ja": "ところを見ると",
+      "reading_romaji": "tokoro o miru to",
+      "gloss": "judging from, seeing that",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%93%e3%82%8d%e3%82%92%e3%81%bf%e3%82%8b%e3%81%a8-tokoro-o-miru-to/",
+      "note": "",
+      "book_order": 1178
+    },
+    {
+      "title_ja": "とっくに",
+      "reading_romaji": "tokku ni",
+      "gloss": "already, long ago",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%a3%e3%81%8f%e3%81%ab-tokku-ni/",
+      "note": "",
+      "book_order": 1179
+    },
+    {
+      "title_ja": "とも",
+      "reading_romaji": "tomo",
+      "gloss": "even if, no matter",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%82%82-tomo/",
+      "note": "",
+      "book_order": 1180
+    },
+    {
+      "title_ja": "としても",
+      "reading_romaji": "to shite mo",
+      "gloss": "assuming, even if",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%97%e3%81%a6%e3%82%82-toshitemo/",
+      "note": "",
+      "book_order": 1181
+    },
+    {
+      "title_ja": "としては",
+      "reading_romaji": "toshite wa",
+      "gloss": "as for",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a8%e3%81%97%e3%81%a6%e3%81%af-toshite-wa/",
+      "note": "",
+      "book_order": 1182
+    },
+    {
+      "title_ja": "つもりで",
+      "reading_romaji": "tsumori de",
+      "gloss": "with the intention of doing",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a4%e3%82%82%e3%82%8a%e3%81%a7-tsumori-de/",
+      "note": "",
+      "book_order": 1183
+    },
+    {
+      "title_ja": "つつ",
+      "reading_romaji": "tsutsu",
+      "gloss": "while, although",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a4%e3%81%a4-tsutsu/",
+      "note": "",
+      "book_order": 1184
+    },
+    {
+      "title_ja": "つつある",
+      "reading_romaji": "tsutsu aru",
+      "gloss": "to be doing",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%a4%e3%81%a4%e3%81%82%e3%82%8b-tsutsu-aru/",
+      "note": "",
+      "book_order": 1185
+    },
+    {
+      "title_ja": "上で",
+      "reading_romaji": "ue de",
+      "gloss": "after",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n3-grammar-%e3%81%86%e3%81%88%e3%81%a7-ue-de/",
+      "note": "",
+      "book_order": 1186
+    },
+    {
+      "title_ja": "上に",
+      "reading_romaji": "ue ni",
+      "gloss": "as well, besides, in addition to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%86%e3%81%88%e3%81%ab-ue-ni/",
+      "note": "",
+      "book_order": 1187
+    },
+    {
+      "title_ja": "上は",
+      "reading_romaji": "ue wa",
+      "gloss": "now that, since",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%86%e3%81%88%e3%81%af-ue-wa/",
+      "note": "",
+      "book_order": 1188
+    },
+    {
+      "title_ja": "は別として",
+      "reading_romaji": "wa betsu to shite",
+      "gloss": "aside from",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%af%e3%81%b9%e3%81%a4%e3%81%a8%e3%81%97%e3%81%a6-wa-betsu-toshite/",
+      "note": "",
+      "book_order": 1189
+    },
+    {
+      "title_ja": "はもとより",
+      "reading_romaji": "wa moto yori",
+      "gloss": "also, let alone",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%af%e3%82%82%e3%81%a8%e3%82%88%e3%82%8a%e3%81%af%e3%82%82%e3%81%a1%e3%82%8d%e3%82%93-wa-moto-yori/",
+      "note": "",
+      "book_order": 1190
+    },
+    {
+      "title_ja": "はともかく",
+      "reading_romaji": "wa tomokaku",
+      "gloss": "whether or not",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%af%e3%81%a8%e3%82%82%e3%81%8b%e3%81%8f-wa-tomokaku/",
+      "note": "",
+      "book_order": 1191
+    },
+    {
+      "title_ja": "わずかに",
+      "reading_romaji": "wazuka ni",
+      "gloss": "slightly",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%8f%e3%81%9a%e3%81%8b%e3%81%ab-wazuka-ni/",
+      "note": "",
+      "book_order": 1192
+    },
+    {
+      "title_ja": "やがて",
+      "reading_romaji": "yagate",
+      "gloss": "soon, before long, eventually",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%84%e3%81%8c%e3%81%a6-yagate/",
+      "note": "",
+      "book_order": 1193
+    },
+    {
+      "title_ja": "やら〜やら",
+      "reading_romaji": "yara〜yara",
+      "gloss": "such things as",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%84%e3%82%89%ef%bd%9e%e3%82%84%e3%82%89-yarayara/",
+      "note": "",
+      "book_order": 1194
+    },
+    {
+      "title_ja": "よりほかない",
+      "reading_romaji": "yori hoka nai",
+      "gloss": "to have no choice but",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%88%e3%82%8a%e3%81%bb%e3%81%8b%e3%81%aa%e3%81%84-yori-hoka-nai/",
+      "note": "",
+      "book_order": 1195
+    },
+    {
+      "title_ja": "ようでは",
+      "reading_romaji": "you dewa",
+      "gloss": "if",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%88%e3%81%86%e3%81%a7%e3%81%af-you-dewa/",
+      "note": "",
+      "book_order": 1196
+    },
+    {
+      "title_ja": "ようがない/ようもない",
+      "reading_romaji": "you ga nai/you mo nai",
+      "gloss": "there’s no way to, it’s impossible to",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%82%88%e3%81%86%e3%81%8c%e3%81%aa%e3%81%84-you-ga-nai/",
+      "note": "",
+      "book_order": 1197
+    },
+    {
+      "title_ja": "要するに",
+      "reading_romaji": "you suru ni",
+      "gloss": "the point is",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e8%a6%81%e3%81%99%e3%82%8b%e3%81%ab-you-suru-ni/",
+      "note": "",
+      "book_order": 1198
+    },
+    {
+      "title_ja": "ざるを得ない",
+      "reading_romaji": "zaru o enai",
+      "gloss": "can’t help doing, have no choice but",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%96%e3%82%8b%e3%82%92%e5%be%97%e3%81%aa%e3%81%84-zaru-o-enai/",
+      "note": "",
+      "book_order": 1199
+    },
+    {
+      "title_ja": "ずに済む",
+      "reading_romaji": "zu ni sumu",
+      "gloss": "get by without doing something",
+      "page_ref": "https://japanesetest4you.com/flashcard/learn-jlpt-n2-grammar-%e3%81%9a%e3%81%ab%e3%81%99%e3%82%80-zu-ni-sumu/",
+      "note": "",
+      "book_order": 1200
+    }
+  ]
+}
