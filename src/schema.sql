@@ -92,3 +92,41 @@ CREATE TABLE IF NOT EXISTS loop_state (
   last_verdict TEXT,
   updated_at TEXT
 );
+
+-- ============================================================================
+-- 术语表(特定技能 製造分野 教材 PDF 的词汇;pic-sourse/ 里那两份)
+-- 只存 词形/读音/页码/我们自己定的分类与难度 —— 不存书里的任何句子。
+-- 难度/分类是程序化结果,可重跑覆盖;zh(中文)/note(说明)是后填的 AI 内容,
+-- 重跑不覆盖(靠 note_version 区分版本)。md 报告只是这张表的导出物。
+-- status: new(待挑) → keep(要做卡) / skip(不要) → carded(已出卡)
+-- ============================================================================
+CREATE TABLE IF NOT EXISTS term (
+  id          INTEGER PRIMARY KEY,
+  term        TEXT NOT NULL,
+  reading     TEXT NOT NULL DEFAULT '',      -- 读音(来自书里的振り仮名);片假名词留空
+  kind        TEXT NOT NULL DEFAULT 'kanji', -- kanji / kata
+  category    TEXT NOT NULL DEFAULT 'その他',
+  difficulty  INTEGER NOT NULL DEFAULT 0,    -- 1..5
+  zipf_min    REAL,                          -- 难度依据:词内最罕用成分的日语 Zipf
+  zipf_whole  REAL,
+  in_wordlist INTEGER NOT NULL DEFAULT 0,
+  hits        INTEGER NOT NULL DEFAULT 0,    -- 在教材里出现次数
+  pages       TEXT NOT NULL DEFAULT '',      -- 出现页(逗号分隔)
+  source      TEXT NOT NULL DEFAULT '',      -- 来源 PDF 文件名
+  status      TEXT NOT NULL DEFAULT 'new',
+  zh          TEXT,                          -- 中文(后填)
+  note        TEXT,                          -- 一句话说明(后填)
+  confidence  TEXT,                          -- 说明的置信度
+  note_model  TEXT, note_version TEXT,       -- AI 内容的模型 / 提示词版本
+  audio        TEXT,                          -- 朗读 mp3 文件名(内容寻址,放 data/out/media)
+  audio_speaker INTEGER,                      -- 用的哪个音色(重跑不变)
+  extract_version TEXT,                      -- 抽取器版本(重跑换版本号)
+  priority    REAL,                          -- 重要度打分(程序化,term_triage.py 可重跑覆盖)
+  tier        TEXT,                          -- '1'=必須 / '2'=重要 / '3'=補完(按 priority 名次切档)
+  guid_key    TEXT,                          -- 首发 GUID 用的 "term:reading";改名/改读音后仍用它算 GUID
+  skip_sent   INTEGER NOT NULL DEFAULT 0,    -- 被剔除(skip)的词是否已随包发过一次「削除候補」
+  created_at  TEXT, updated_at  TEXT,
+  UNIQUE(term, reading, source)
+);
+CREATE INDEX IF NOT EXISTS idx_term_cat    ON term(category, difficulty);
+CREATE INDEX IF NOT EXISTS idx_term_status ON term(status);

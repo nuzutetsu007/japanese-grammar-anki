@@ -311,6 +311,13 @@ _MIGRATIONS = [
     ("example", "conn", "TEXT"),
     ("example", "audio", "TEXT"),
     ("example", "audio_speaker", "INTEGER"),
+    ("term", "extract_version", "TEXT"),   # 术语表(特定技能教材)的抽取器版本
+    ("term", "audio", "TEXT"),
+    ("term", "audio_speaker", "INTEGER"),
+    ("term", "priority", "REAL"),          # 重要度打分(可重跑覆盖)
+    ("term", "tier", "TEXT"),              # 1=必須 / 2=重要 / 3=補完
+    ("term", "guid_key", "TEXT"),          # 改名后仍用旧键算 GUID
+    ("term", "skip_sent", "INTEGER DEFAULT 0"),  # 剔除词已随包发过「削除候補」
 ]
 
 
