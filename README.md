@@ -320,6 +320,31 @@ python3 src/tts.py --gc            # 顺手删掉不再被引用的残留 mp3
 音频由 `export_anki.py` 收集(`genanki.Package(media_files=...)`)打进 `.apkg`。
 `pipeline.sh` 里已加这一步,VOICEVOX 没起就自动跳过。
 
+## 术语线:特定技能教材 → 单词牌组
+
+同一套「SQLite 为真相源」做法,吃两本教材 PDF(`pic-sourse/` 下的学習用テキスト + サンプル問題):
+
+```
+src/pdf2md.py --ruby     # PDF → md(振り仮名解析,页码注释)
+src/pdf_vocab.py ingest  # 挖词入 term 表(读音/类别/★难度/出现次数/页码)
+src/term_note_fill.py    # LLM 填 zh + note(term_note_v1;uncertain 不出卡)
+src/term_tts.py          # VOICEVOX 逐词朗读(内容寻址,重跑跳过)
+src/term_triage.py       # 噪声清理白名单 + 重要度打分/分档
+src/term_cards.py        # 出 data/out/特定技能用語.apkg
+```
+
+- **重要度打分**:`hits`(教材出现次数)/ ★难度 / 片假名外来语 / 常用词表 / 领域加权
+  → 写进 `term.priority`,按名次切档 `term.tier`:1=必須(top 300)/ 2=重要(600)/ 3=補完。
+  纯程序化可重跑;分档常数在 `term_triage.py` 顶部。
+- **改名不丢进度**:改词形/读音时把旧 `term:reading` 写进 `term.guid_key`,
+  GUID 保持不变 → Anki 重导入是**原地更新**。
+- **剔除词只发一次**:`status='skip'` 的噪声词带 `用語::削除候補` 标签随下一次包发一遍
+  (`skip_sent=1`),在 Anki 里搜该标签一键删;以后不再发。
+- **Anki 重导入实测行为(26.9)**:字段/标签原地更新、学习进度保留,
+  **但不会把已有卡片迁到新牌组** —— 换牌组布局后需要在浏览器里
+  按标签搜索 + 「カードを変更/Change Deck」来迁移。
+- 交付与导入步骤见 `data/out/特定技能用語_导入指引.md`。
+
 ## 当前结果
 
 数据库是唯一真相来源,状态会随 loop 变化。**随时用下面命令看当前快照**,
