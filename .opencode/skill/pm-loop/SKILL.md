@@ -86,6 +86,9 @@ description: >
   (exam-head top ↔ exam-q scroll-margin)必须同改;JS 切类先对照 CSS 状态矩阵;
   键盘焦点防 document 级双触发;异步响应回来先查 `state.tab` 防覆盖;
   POST 写库路径必须考虑幂等/并发(BEGIN IMMEDIATE + rowcount)。
+- **kill 与重启绝不放同一条命令**:`pgrep -f "xxx[.]py"` 会匹配同一命令行的"启动段"
+  (如 `nohup src/quiz_web.py`),自杀式连坐——新旧进程一起没。分两条命令跑:
+  先单独 kill(那时命令行里没有别处引用),启动放另一条(且用 setsid nohup 脱离终端)。
 
 ### 5. 验收:生产零污染
 
