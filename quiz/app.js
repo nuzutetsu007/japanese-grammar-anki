@@ -547,6 +547,65 @@ function renderExamIntro(view) {
   view.appendChild(panel);
 
   btn.addEventListener('click', function () { startExam(view, btn); });
+  checkCurrentExam(view);   /* 有进行中的一场就挂出恢复卡,别让用户摸不着头脑 */
+}
+
+async function checkCurrentExam(view) {
+  const myTab = state.tab;
+  let data;
+  try {
+    data = await api('/api/exam/current');
+  } catch (e) {
+    return;   /* 服务不上线时提示条已弹,不打断介绍页 */
+  }
+  if (state.tab !== myTab || !data || !data.current || state.exam) return;
+  const c = data.current;
+  const card = el('div', { cls: 'panel resume-exam' });
+  card.appendChild(el('h2', { text: '发现进行中的考试' }));
+  card.appendChild(el('div', {
+    text: '上次开考未交卷,剩 ' + fmtTime(c.remain_ms) + '。作答已实时保存,刷新也不会丢。',
+  }));
+  const row = el('div', { cls: 'row' });
+  const go = el('button', { cls: 'btn primary', attrs: { type: 'button' }, text: '继续这场考试' });
+  go.addEventListener('click', function () { resumeExam(c); });
+  const drop = el('button', { cls: 'btn', attrs: { type: 'button' }, text: '放弃这场' });
+  drop.addEventListener('click', async function () {
+    drop.disabled = true;
+    try {
+      await postJSON('/api/exam/abandon', { session_id: c.session_id });
+      showBanner('已放弃,可以开新的一场', 'ok');
+    } catch (e) {
+      if (!e.status) return;   /* 连不上本地服务才保留卡片等重试;400=那场已结束,同样收掉 */
+    }
+    if (card.parentNode) card.parentNode.removeChild(card);
+    drop.disabled = false;
+  });
+  row.appendChild(go);
+  row.appendChild(drop);
+  card.appendChild(row);
+  view.insertBefore(card, view.firstChild);
+}
+
+/* 断点续考:/exam/start 响应同构的字段重建现场(server 已存 qids + answers) */
+function resumeExam(c) {
+  const mins = c.minutes || 80;
+  state.exam = {
+    session: c,
+    minutes: mins,
+    questions: c.ox.concat(c.choice),
+    answers: Object.assign({}, c.answers),
+    startedAt: Date.now() - (mins * 60000 - c.remain_ms),
+    remainMs: c.remain_ms,
+    timerId: null,
+    submitted: false,
+    paper: true,
+    result: null,
+    dom: {},
+    navCells: {},
+  };
+  setUnloadGuard(true);
+  startExamTimer();
+  renderExamPaper($('#view'));
 }
 
 async function startExam(view, btn) {
@@ -715,6 +774,10 @@ function pickExamAnswer(ex, q, letter) {
   const cell = ex.navCells[q.id];
   if (cell) cell.classList.add('done');
   updateExamStatus();
+  /* 作答实时上库:刷新/关页后可断点续考;上报失败不打断本地作答,最后照样交卷 */
+  postJSON('/api/exam/pick', {
+    session_id: ex.session.session_id, question_id: q.id, chosen: letter,
+  }).catch(function () { });
 }
 
 function updateExamStatus() {

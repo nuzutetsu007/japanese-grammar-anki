@@ -173,6 +173,7 @@ label.field { display: inline-flex; align-items: center; gap: 6px; font-size: 14
   background: var(--warn-bg); color: var(--warn-fg); border: 1px solid #ecd98a;
   border-radius: 8px; padding: 8px 12px; font-size: 14px; margin-bottom: 12px;
 }
+.resume-exam { border-left: 4px solid var(--accent); }   /* 恢复卡:一眼看出「这是未完成的事」 */
 .exam-head {
   position: sticky; top: calc(var(--tb) - 1px); z-index: 5;
   background: #fff; border: 1px solid var(--line); border-radius: 12px;
