@@ -218,7 +218,7 @@ class PracticeCard {
     this.feedback.appendChild(expl);
 
     if (res.explanation_ja) {
-      const d = el('details');
+      const d = el('details', { attrs: { open: '' } });   // 默认展开,可手动折叠
       d.appendChild(el('summary', { text: '教材解説(日语原解说)' }));
       d.appendChild(el('div', { cls: 'ja', text: res.explanation_ja }));
       this.feedback.appendChild(d);
@@ -234,10 +234,10 @@ class PracticeCard {
     row.appendChild(el('span', { cls: 'kbdhint', text: '键盘:Enter = 下一题 · A/B/1-4 = 选答案' }));
     this.feedback.appendChild(row);
 
-    // 答完把「判定 + 解释」滑进视野(仅当它在屏幕外时);「下一题」按钮底部常驻,不用找
+    // 答完默认平滑跳到解说(判定 + 中文解释 + 日语解说);「下一题」按钮底部常驻,不用找
     requestAnimationFrame(function () {
       const rect = self.feedback.getBoundingClientRect();
-      if (rect.top > window.innerHeight - 120) {
+      if (Math.abs(rect.top - 96) > 24) {      // 已经基本对齐就不动,避免碎跳
         window.scrollTo({ top: window.scrollY + rect.top - 96, behavior: 'smooth' });
       }
     });
