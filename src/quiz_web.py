@@ -160,6 +160,7 @@ def attempt_streaks(conn: sqlite3.Connection, qids: list[int]) -> dict[int, tupl
     marks = ",".join("?" * len(qids))
     rows = conn.execute(
         f"SELECT question_id, correct FROM attempt WHERE question_id IN ({marks})"
+        " AND IFNULL(chosen,'')<>''"          # 未作答(chosen='')不算错:不清零也不计数
         " ORDER BY question_id, ts, id", qids).fetchall()
     cur_qid, seq, n_wrong = None, [], 0
     for r in rows:
@@ -190,7 +191,7 @@ def fetch_wrong_book(conn: sqlite3.Connection) -> list[dict]:
         "SELECT q.id, q.kind, q.stem, q.choices, q.chapter, q.pages, q.ref, q.origin, q.difficulty,"
         " t.n_wrong, t.last_wrong FROM question q"
         " JOIN (SELECT question_id, SUM(correct=0) AS n_wrong, MAX(CASE WHEN correct=0 THEN ts END) AS last_wrong"
-        "       FROM attempt GROUP BY question_id HAVING SUM(correct=0) > 0) t ON t.question_id=q.id"
+        "       FROM attempt WHERE IFNULL(chosen,'')<>'' GROUP BY question_id) t ON t.question_id=q.id"
         f" WHERE {usable_sql('q')}").fetchall()
     streaks = attempt_streaks(conn, [r["id"] for r in cand])
     out = []
@@ -290,10 +291,16 @@ def api_answer(store: Store, body: dict) -> dict:
         if chosen not in allowed:
             raise ApiError(400, f"chosen 必须是 {'/'.join(allowed)} 之一")
         correct = int(chosen == row["answer"])
-        conn.execute(
-            "INSERT INTO attempt (question_id, session_id, chosen, correct, elapsed_ms, ts)"
-            " VALUES (?,NULL,?,?,?,?)", (qid, chosen, correct, elapsed, now()))
-        conn.commit()
+        # 防重复提交:同一题同选同判 3 秒内已记过 → 不再重复 INSERT(网络重试/双击)
+        dup = conn.execute(
+            "SELECT 1 FROM attempt WHERE question_id=? AND chosen=? AND correct=?"
+            " AND ts >= datetime('now','localtime','-3 seconds') LIMIT 1",
+            (qid, chosen, correct)).fetchone()
+        if dup is None:
+            conn.execute(
+                "INSERT INTO attempt (question_id, session_id, chosen, correct, elapsed_ms, ts)"
+                " VALUES (?,NULL,?,?,?,?)", (qid, chosen, correct, elapsed, now()))
+            conn.commit()
         return {"correct": bool(correct), "answer": row["answer"],
                 "explanation_zh": row["explanation_zh"] or "",
                 "explanation_ja": row["explanation_ja"] or ""}
@@ -316,10 +323,19 @@ def api_exam_start(store: Store, body: dict) -> dict:
         ox = fetch_usable(conn, "ox", EXAM_OX_N)
         choice = fetch_usable(conn, "choice", EXAM_CHOICE_N)
         qids = {"ox": [r["id"] for r in ox], "choice": [r["id"] for r in choice]}
+        # 开考防呆:低于合格线意味着这场必然「挂」,别让用户白考 80 分钟
+        short = []
+        if len(ox) < THRESH_OX:
+            short.append(f"学科(○×)现有 {len(ox)} 题,需 {THRESH_OX}")
+        if len(choice) < THRESH_CHOICE:
+            short.append(f"実技(4択)现有 {len(choice)} 题,需 {THRESH_CHOICE}")
+        if short:
+            raise ApiError(409, "可用题不足,无法开始模拟考:" + ";".join(short) + ",先去补题")
         n = len(ox) + len(choice)
-        if n == 0:
-            raise ApiError(409, "题库里没有可用题,无法开始模拟考")
         detail = {"kinds": {"ox": len(ox), "choice": len(choice)}, "qids": qids}
+        # 回收弃考的悬空场次(时间用 started_at,别污染成 now)
+        conn.execute(
+            "UPDATE session SET finished_at=started_at WHERE mode='exam' AND finished_at IS NULL")
         cur = conn.execute(
             "INSERT INTO session (mode, n, n_correct, score, passed, detail, started_at, finished_at)"
             " VALUES ('exam', ?, 0, NULL, NULL, ?, ?, NULL)",
@@ -375,6 +391,7 @@ def api_exam_submit(store: Store, body: dict) -> dict:
 
         ts = now()
         detail_out = []
+        new_att: list[tuple] = []     # attempt 只在 UPDATE 抢到场次后才写(见下)
         per_kind: dict[str, dict] = {}
         n_correct_total = 0
         for kind in KINDS:
@@ -391,9 +408,7 @@ def api_exam_submit(store: Store, body: dict) -> dict:
                 if correct:
                     got += 1
                     n_correct_total += 1
-                conn.execute(
-                    "INSERT INTO attempt (question_id, session_id, chosen, correct, elapsed_ms, ts)"
-                    " VALUES (?,?,?,?,NULL,?)", (qid, sid, chosen, correct, ts))
+                new_att.append((qid, sid, chosen, correct, ts))
                 detail_out.append({
                     "question_id": qid, "chosen": chosen, "answer": answer,
                     "correct": bool(correct),
@@ -414,10 +429,19 @@ def api_exam_submit(store: Store, body: dict) -> dict:
         passed = bool(per_kind["ox"]["passed"] and per_kind["choice"]["passed"])
         score = round(100.0 * n_correct_total / n_total, 1) if n_total else 0.0
         detail_db = {"kinds": per_kind, "qids": qids_by_kind, "elapsed_ms": elapsed}
-        conn.execute(
-            "UPDATE session SET n=?, n_correct=?, score=?, passed=?, detail=?, finished_at=? WHERE id=?",
+        # 判重并进 UPDATE:抢到 finished_at IS NULL 的行才算本次交卷,并发双写只成一个
+        conn.execute("BEGIN IMMEDIATE")     # 显式写锁:排掉并发的第二个提交者
+        cur = conn.execute(
+            "UPDATE session SET n=?, n_correct=?, score=?, passed=?, detail=?, finished_at=?"
+            " WHERE id=? AND finished_at IS NULL",
             (n_total, n_correct_total, score, int(passed),
              json.dumps(detail_db, ensure_ascii=False), now(), sid))
+        if cur.rowcount == 0:               # 已被并发请求提交 → 不写 attempt
+            raise ApiError(400, "该场次已交卷")
+        for t in new_att:
+            conn.execute(
+                "INSERT INTO attempt (question_id, session_id, chosen, correct, elapsed_ms, ts)"
+                " VALUES (?,?,?,?,NULL,?)", t)
         conn.commit()
         return {"ox": per_kind["ox"], "choice": per_kind["choice"], "passed": passed,
                 "ox_correct": per_kind["ox"]["correct"], "n_correct": n_correct_total,

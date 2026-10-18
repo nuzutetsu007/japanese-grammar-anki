@@ -27,7 +27,9 @@ CREATE TABLE IF NOT EXISTS source_chunk (
 -- 题库:学员看到的题目(官方素材 + AI 生成)
 -- kind    ox=学科真偽法(A=正しい/B=間違い) choice=実技4択(A-D)
 -- origin  official=2025年度サンプル問題 textbook=教材練習問題 ai=模型生成
--- 可用口径(网页端统一):confidence<>'uncertain' 且 review_verdict<>'wrong' 且 has_figure=0
+-- 可用口径(网页端统一,原样对应 quiz_web.py 的 USABLE_SQL):
+--   has_figure=0 且 IFNULL(confidence,'')<>'uncertain' 且 IFNULL(review_verdict,'')<>'wrong'
+--   (写 IFNULL 版是因为 confidence/review_verdict 可为 NULL,字面 <> 比较会把 NULL 行漏成不出题)
 CREATE TABLE IF NOT EXISTS question (
   id             INTEGER PRIMARY KEY,
   kind           TEXT NOT NULL,
