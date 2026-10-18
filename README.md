@@ -86,8 +86,8 @@ google:gemini-flash-lite-latest            大输出主力(10K TPM 级、按实�
 google:gemini-3.1-flash-lite
 openrouter:nvidia/nemotron-3-ultra-550b-a55b:free
 openrouter:nvidia/nemotron-3-super-120b-a12b:free
-openrouter:qwen/qwen3.8-27b:free
-openrouter:stealth/space-bunny-alpha
+openrouter:google/gemma-4-31b-it:free
+openrouter:nvidia/nemotron-3.5-lightning:free
 groq:openai/gpt-oss-120b                    小输出(verify 之类,按声明 max_tokens 扣 TPM)
 groq:qwen/qwen3.8-27b
 groq:openai/gpt-oss-20b
@@ -97,7 +97,7 @@ groq:openai/gpt-oss-20b
 
 ```bash
 # 换整条链
-GRAMMAR_MODELS='google:gemini-flash-lite-latest,openrouter:qwen/qwen3.8-27b:free' \
+GRAMMAR_MODELS='google:gemini-flash-lite-latest,openrouter:google/gemma-4-31b-it:free' \
     python3 src/expand.py --workers 6
 
 # 只跑一个模型
@@ -352,6 +352,37 @@ src/localsend_send.py    # 把 .apkg 直发到手机(LocalSend 协议;证书 ~/.
 - **v3 结构**:牌组 = 三段式 `01_必須 / 02_重要 / 03_補完`;标签 = `用語 / 用語::難度::N`;
   卡片不显示类别(类别数据仍在库里,以后想按类别出卡随时可改回)。
 - 交付与导入步骤见 `data/out/特定技能用語_导入指引.md`。
+
+## 刷题线:特定技能1号评价考试练习(临时,考完删)
+
+给自己备考「製造分野特定技能1号評価試験(電気電子機器組立て区分)」用的选择题题库 +
+本地刷题网页。**这是临时线:考完试把 `db/quiz.sqlite` 一删就完事**(它不进 git;
+脚本与提示词照常入库)。与语法/术语线共用 `common.py` 的模型调度和额度账本,但**不共用库**。
+
+- 素材:2025 年度官方サンプル問題(40 题)+ 教材《学習用参考テキスト》正文与練習問題。
+- 口径贴真题:学科 30 题 ○×(A=正しい / B=間違い)、実技 10 题 4択(A〜D),
+  80 分钟,合格 学科 65%(≥20/30)、実技 60%(≥6/10)。
+- **只用纯文字题**:依赖图/照片/表格的题打 `has_figure=1`,网页端不出(但留库)。
+
+```
+python3 src/quiz_gen.py init                         # 建临时库 db/quiz.sqlite(幂等)
+python3 src/quiz_gen.py chunks                       # 教材 md → source_chunk(切块,幂等)
+python3 src/quiz_official.py                         # 官方样题 + 教材練習問題 → JSONL
+python3 src/quiz_gen.py import data/out/quiz_*.jsonl # 入库(按题干去重,重复导入无害)
+python3 src/quiz_gen.py gen --kind ox --workers 4    # AI 出 ○× 题直接入库
+python3 src/quiz_gen.py gen --kind choice --workers 4 --out data/out/quiz_ai_choice.jsonl
+                                                     # 4択 也可写 JSONL(多进程并行出题用这个)
+python3 src/quiz_gen.py verify --limit 200           # 第二个模型审题 ok/doubtful/wrong
+python3 src/quiz_gen.py explain                      # 补中文解释(textbook 优先改写日语解説)
+python3 src/quiz_gen.py stats                        # 看看库里有多少能用的
+python3 src/quiz_web.py                              # 刷题网页 http://127.0.0.1:8765
+```
+
+- 额度分派:○× 输出小(`max_tokens=900`),Groq 免费层(OTPM 1000)也能接;
+  4択 输出大(`max_tokens=1900`),超 OTPM 的 provider 被调度器自动跳过。
+- 可用题口径(网页端统一):`has_figure=0 AND confidence<>'uncertain' AND review_verdict<>'wrong'`。
+- 页码都是**教材印刷页码**(页脚 `▌` 里的数字);PDF 物理页 = 印刷页 + 9(前言 9 页)。
+- 结构真相 + 各命令细节:`src/quiz_schema.sql` 与各脚本头部注释。
 
 ## 当前结果
 

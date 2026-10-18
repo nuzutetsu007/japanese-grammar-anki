@@ -62,6 +62,21 @@ eval/golden.json  改提示词前的标准答案样本
   客户端证书首次自动生成在 `~/.cache/localsend_send/`)。
 - 细节与教训:README「术语线」;导入步骤:`data/out/特定技能用語_导入指引.md`。
 
+## 刷题线(特定技能评价考试练习,临时)
+
+给自己备考用的题库 + 本地刷题网页。**考完就删**:`db/quiz.sqlite` 不进 git(脚本/提示词进),
+不共用 grammar/term 库。结构真相在 `src/quiz_schema.sql`(用法写在文件头注释)。
+
+`quiz_gen.py`(init/chunks/gen/import/verify/explain/stats)+ `quiz_official.py`(官方样题 + 教材練習問題解析)+ `quiz_web.py`(本地刷题服务器,读同一库)。
+
+- 可用题口径(网页端统一):`has_figure=0 AND confidence<>'uncertain' AND review_verdict<>'wrong'`。
+- 出题配额分派:○× 输出小 → Groq(max_tokens 900)也能接;4択 输出大 → 调度器自动跳过 Groq。
+- 多进程 / 多 agent 并行出题只写 JSONL(各写各的 `gen --out`),最后 `import` 统一入库(按题干去重)。
+- 审题用 `quiz_verify_v2`:○× 是「A=正しい / B=間違い」,答案字母别当成真假;依赖图题判
+  `doubtful` 不判 `wrong`。改提示词 = 新建版本文件 + `quiz_gen.py` 顶部常量,重跑不覆盖旧行。
+- 页码口径:存**教材印刷页**(页脚 `▌` 里的数字);`<!-- p.N -->` 是 PDF 物理页 = 印刷页 + 9,
+  可用 `calibrate_offset` 现场标定。
+
 ## 模型调用启发式
 
 - 不 shell `pi`,直接 HTTP(`common.chat`,OpenAI 兼容端点);key 放 `.env`(权限 600)。

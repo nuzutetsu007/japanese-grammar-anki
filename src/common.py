@@ -94,8 +94,8 @@ DEFAULT_MODELS = os.environ.get(
     # OpenRouter 免费模型(账号有余额 → 1000 RPD)
     "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free,"
     "openrouter:nvidia/nemotron-3-super-120b-a12b:free,"
-    "openrouter:qwen/qwen3.8-27b:free,"
-    "openrouter:stealth/space-bunny-alpha,"
+    "openrouter:google/gemma-4-31b-it:free,"
+    "openrouter:nvidia/nemotron-3.5-lightning:free,"
     # Groq:只接小输出(按声明 max_tokens 扣 TPM,大输出会饿死)
     "groq:openai/gpt-oss-120b,"
     "groq:qwen/qwen3.8-27b,"
