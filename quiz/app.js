@@ -224,15 +224,23 @@ class PracticeCard {
       this.feedback.appendChild(d);
     }
 
+    this.noteSlot = el('div');
+    this.feedback.appendChild(this.noteSlot);
+
     const row = el('div', { cls: 'nextrow' });
     const nextBtn = el('button', { cls: 'btn primary', attrs: { type: 'button' }, text: this.opts.nextLabel || '下一题 →' });
     nextBtn.addEventListener('click', function () { if (self.opts.onNext) self.opts.onNext(); });
     row.appendChild(nextBtn);
-    row.appendChild(el('span', { cls: 'kbdhint', text: '键盘:Enter / 空格 = 下一题' }));
+    row.appendChild(el('span', { cls: 'kbdhint', text: '键盘:Enter = 下一题 · A/B/1-4 = 选答案' }));
     this.feedback.appendChild(row);
 
-    this.noteSlot = el('div');
-    this.feedback.appendChild(this.noteSlot);
+    // 答完把「判定 + 解释」滑进视野(仅当它在屏幕外时);「下一题」按钮底部常驻,不用找
+    requestAnimationFrame(function () {
+      const rect = self.feedback.getBoundingClientRect();
+      if (rect.top > window.innerHeight - 120) {
+        window.scrollTo({ top: window.scrollY + rect.top - 96, behavior: 'smooth' });
+      }
+    });
   }
 
   setNote(text) {
@@ -277,8 +285,9 @@ class PracticeSession {
       },
     });
     activeCard = card;
-    this.stage.appendChild(card.render());
-    window.scrollTo({ top: 0 });
+    const node = card.render();
+    this.stage.appendChild(node);
+    node.scrollIntoView({ block: 'start' });   // 题卡贴顶(顶栏之下),跳过筛选面板,不重复上下翻
   }
 
   next() { this.idx += 1; this.show(); }
@@ -308,6 +317,7 @@ class PracticeSession {
     }
     if (row.childNodes.length) panel.appendChild(row);
     this.stage.appendChild(panel);
+    panel.scrollIntoView({ block: 'start' });
     if (this.opts.onDone) this.opts.onDone();
   }
 }
