@@ -7,7 +7,7 @@ Anki 里是**更新**而不是新增重复卡。
 
 用法:
     python src/export_anki.py
-    python src/export_anki.py --out data/out/N1文法.apkg
+    python src/export_anki.py --out data/out/日本語文法.apkg
     python src/export_anki.py --db-only      # 只导出已经在 card 表里的 exported/draft
 """
 from __future__ import annotations

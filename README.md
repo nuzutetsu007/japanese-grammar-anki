@@ -2,6 +2,7 @@
 
 把《日本語総まとめ N1 文法》目录照片 OCR 成结构化文法点,用 AI 逐条扩写(接续 / 意思 / 汉字写法 / 由来 / 用法 / 对比 / 例句),
 经自检与人工审核后导出成 Anki 牌组。**SQLite 是唯一真相来源**,Anki 只是导出物。
+同一套做法也用在「特定技能」教材的术语卡片(见「术语线」一节,产物 `特定技能用語.apkg`)。
 
 ## 快速开始
 
@@ -48,6 +49,9 @@ src/
   sample_check.py        阶段 8 随机抽检(输出 md 给人看)
   export_anki.py         阶段 7 导出 .apkg
   eval_golden.py         黄金样本对比
+  术语线:pdf2md → pdf_vocab → term_note_fill → term_tts → term_triage → term_cards
+  localsend_send.py      把 .apkg 直发到手机(LocalSend 协议)
+data/term_notes/         手写术语表(TSV)
 eval/golden.json         人工确认过的标准答案样本
 data/out/                中间产物(raw 模型原始输出、cards.json、.apkg、日志)
 ```
@@ -331,6 +335,7 @@ src/term_note_fill.py    # LLM 填 zh + note(term_note_v1;uncertain 不出卡)
 src/term_tts.py          # VOICEVOX 逐词朗读(内容寻址,重跑跳过)
 src/term_triage.py       # 噪声清理白名单 + 重要度打分/分档
 src/term_cards.py        # 出 data/out/特定技能用語.apkg
+src/localsend_send.py    # 把 .apkg 直发到手机(LocalSend 协议;证书 ~/.cache/localsend_send/)
 ```
 
 - **重要度打分**:`hits`(教材出现次数)/ ★难度 / 片假名外来语 / 常用词表 / 领域加权

@@ -1,62 +1,46 @@
 # PLAN
 
-> 状态基线(2026-09-29):
-> 收录 第1〜4週 / 74 文型,`verified 74 / needs_review 0`。
-> 卡片 220 张 = 読解 74 + 文型 74 + 联想 72(方向:**日语 → 中文意思**)。
-> 产物 `data/out/N1文法.apkg`(已重新导出,用户已删旧牌组,待导入)。
+> 状态基线(2026-10-18;数字以库为准,快照命令见 README「当前结果」):
+> **文法线**:N1 74 文型(第1〜4週)+ N2 200 文型全部 `verified`;
+> 产物 `data/out/日本語文法.apkg` = 806 张(読解 274 / 文型 274 / 联想 258)+ 547 条例句朗读。
+> **术语线**:特定技能 2465 词已出 v3 包(三段式)并直传手机;726 个 uncertain 搁置。
 
 ## 已定决策
 
 | 决策 | 结论 | 日期 |
 |---|---|---|
-| 学习方向 | **日语 → 中文意思**;删掉「中文 → 日语」产出卡(N1 文型是读解用,生活中不用) | 09-29 |
+| 文法学习方向 | **日语 → 中文意思**;删掉「中文 → 日语」产出卡 | 09-29 |
 | 読解卡信息量 | **不瘦身**,保留 意思+訳+文型+接続+用法+使い分け | 09-29 |
-| 第5週・第6週照片 | **四周后(学完前四周)再补** | 09-29 |
-| 旧 apkg | 用户已手动删除旧牌组,直接导入新包 | 09-29 |
+| 升级方式 | 原地更新只动字段/标签,Anki **不会迁牌组** → 换结构就「删旧牌组 → 全新导入」 | 10-18 |
+| 术语牌组结构 | v3 **三段式** `01_必須/02_重要/03_補完`;标签只 `用語 / 用語::難度::N`;类别留库不上卡 | 10-18 |
+| 术语交付口径 | **删旧牌组 → 全新导入**(放弃「原地升级+手动迁牌组」) | 10-18 |
+| 第5・第6週照片 | 四周后(学完前四周)再补拍 | 09-29 |
 
----
+## 已完成(存档)
 
-## P0 — 收尾当前方向修正 ✅ 已完成
+- [x] 文法线全流程:N1 74 + N2 200 → 806 卡;VOICEVOX 例句音 547 条;容灾链 / loop / 抽检工具齐
+- [x] 术语线全流程:PDF→挖词→ zh/note 填充→ 逐词朗读→ 清理/打分 → v3 包 2465 词(300/600/1565)
+- [x] 术语包直传手机(`src/localsend_send.py`);导入指引 `data/out/特定技能用語_导入指引.md`
+- [x] 文档与现状同步:README / AGENTS.md / PLAN(2026-10-18 校对)
 
-- [x] `README.md` 新增「卡片类型」章节:reading / point / etymology_hook 三类,
-      写清为什么不做产出卡;附 card_type ↔ Anki 笔记类型名对照。
-- [x] `README.md` 新增「升级 / 重导入」小节(旧 note type 会残留,先删牌组再导入)。
-- [x] `src/sample_check.py` 写好并跑通:随机抽 N 条 → `data/out/sample_check.md`
-      (人看)+ `sample_check.json`(带空 verdict,方便标记回流)。
-      已加入 README 快速开始与 src 清单。
-- [x] `data/out/N1文法.apkg` 重新导出并解包校验(220 notes / guid 全唯一 / 3 个 note type)。
+## P1 — 等你(优先)
 
-## P1 — 补数据(等你)
+- [ ] **第5・第6週 目录照片**(预计还有 30+ 文型):拍好丢 `pic-sourse/` → `src/ingest.py`
+      (幂等,不动已有 74 条)→ expand → verify → build_cards → export_anki
+- [ ] **抽检 verdict**:`data/out/sample_check.md` 10 条 `- [ ]` 还是空的,填完我按类型改提示词
+- [ ] **黄金样本**:`eval/golden.json` 3 条 confirmed_by 全空 —— 先确认这 3 条(改提示词前回归的前提)
 
-- [ ] **补拍 第5週・第6週 目录照片**(约四周后)→ `pic-sourse/`
-      → 追加进 `input/toc/toc_ocr.json` → `python3 src/ingest.py`
-      (幂等,不动已有 74 条)→ expand → verify → repair → build → export。
-      全书预计 110 文型左右。
-- [ ] **人眼过一遍抽检清单**:`data/out/sample_check.md`(seed=0 的 10 条),
-      把问题写在文件里 → 我按类型改提示词。
-- [ ] **黄金样本扩到 10 条**:`eval/golden.json` 现在 3 条且 `confirmed_by: null`,
-      确认后填上(改提示词前回归的前提)。
+## P2 — 可选增强(不急)
 
-## P2 — 质量与体验
-
-- [ ] **近义文型互链**:`〜すら/〜ですら`↔`〜だに`、`〜が早いか`↔`〜や否や` 等,
-      卡背自动加「関連: #123 〜だに」跳转。
-- [ ] **外部模型校准**:`src/review_batch.py export` 已产出 `review_batch.json`,
-      还没给第二个模型审。跑一轮 → `import` → `stats`,分歧项进人工队列。
-      (可复用 `pi` CLI,换一个模型当第二审。)
-
-## P3 — 长期循环
-
-- [ ] **Anki 反馈回流**:`src/feedback.py`,读 Anki 导出笔记里的 `check` 标签,
-      把对应文法点重置为 `needs_review`。
-- [ ] **TTS 音频**(可选):読解卡例句加发音,media + `[sound:xxx.mp3]`。
-- [ ] **`make check`**:编译所有 src + `eval_golden.py` + apkg 完整性校验
-      (note 数 / guid 唯一 / 三种 note type 齐)。
-
----
+- [ ] 外部模型二审:`review_batch.py export` → 第二个模型 → `import` → `stats`,分歧进人工队列
+- [ ] 近义文型互链(〜すら↔〜だに 等,卡背加「関連」跳转)
+- [ ] Anki 反馈回流:`src/feedback.py`(读 `check` 标签 → 重置 needs_review)
+- [ ] `make check`:编译全部 src + eval_golden + apkg 完整性校验
+- [ ] 术语线按需再出:类别布局(`term_cards.py --layout category`)或按难度筛,一条命令
+- [ ] 术语 726 个 uncertain:想救时先人工筛,再续跑 note 填充
 
 ## 建议执行顺序
 
 ```
-P0 ✅ → 你过一遍 sample_check.md → 四周后补拍 → ingest/expand/verify/build/export → P2 → P3
+术语线考试复习(约 4 周)> 补拍 5/6 週 → 文法线补全 > P2 里挑
 ```

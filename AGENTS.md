@@ -1,6 +1,7 @@
 # 日语文法书 → SQLite → Anki(给 agent 的工作说明)
 
 从目录照片/文法清单出发,建一个可迭代的文法数据库,用 AI 扩写,最后导出 Anki。
+后来长出的**术语线**(特定技能用語)走同一条路,见「术语线」一节。
 **SQLite 是唯一真相来源,Anki 只是导出物,随时可重建。**
 
 ## 铁律(违反 = 数据不可信)
@@ -21,7 +22,9 @@ db/grammar.sqlite 唯一真相来源
 src/schema.sql    表结构真相 —— 改结构改这里,并在 common._MIGRATIONS 补迁移
 prompts/*_vN.md   提示词按版本管理,改提示词 = 新建一个版本文件
 src/common.py     DB / run_log / 模型调用(HTTP,配额调度 + 容灾)
-src/*.py          各阶段脚本;产物与日志在 data/out/
+src/*.py          各阶段脚本(文法线 + 术语线);产物与日志在 data/out/
+src/localsend_send.py  把 .apkg 直发到手机(LocalSend 协议,本机无需开 GUI)
+data/term_notes/  手写术语表(TSV,`pdf_vocab.py notes` 导入)
 eval/golden.json  改提示词前的标准答案样本
 ```
 
@@ -42,6 +45,22 @@ eval/golden.json  改提示词前的标准答案样本
 - 关键阶段失败要中止/重试,不要静默继续(见 `pipeline.sh` 的 `run_or_die`)。
 - **增量别重写已验证内容**:`pipeline.sh` 默认只扩 `new`;要全量重跑旧内容得显式
   `REEXPAND=1`,否则会白白作废好数据。
+
+## 术语线(特定技能用語,与文法线同规矩)
+
+吃 `pic-sourse/` 的教材 PDF(電気電子機器組立て),真相是同库的 `term` 表:
+
+`pdf2md → pdf_vocab ingest → term_note_fill → term_tts → term_triage → term_cards`
+
+- `term_note_fill` 填 zh / note;`uncertain` 一律不出卡(现有 726 个搁置)。
+- `term_triage` 只动程序化字段(清理白名单 + priority/tier 打分),随时可重跑;
+  分档常数在文件顶部(300 / 900)。
+- 交付口径(v3):三段式 `特定技能::用語::{01_必須,02_重要,03_補完}`;标签只有
+  `用語 / 用語::難度::N`;类别数据留库、不上卡。流程 = **删旧牌组 → 全新导入**。
+- 重出包:`.venv/bin/python src/term_triage.py` → `.venv/bin/python src/term_cards.py`。
+- 发到手机:`python3 src/localsend_send.py <文件> --ip <手机IP>`(手机开「加密」= mTLS,
+  客户端证书首次自动生成在 `~/.cache/localsend_send/`)。
+- 细节与教训:README「术语线」;导入步骤:`data/out/特定技能用語_导入指引.md`。
 
 ## 模型调用启发式
 
