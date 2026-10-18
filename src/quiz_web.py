@@ -22,6 +22,7 @@ import argparse
 import json
 import sqlite3
 import sys
+import time
 import traceback
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -317,6 +318,24 @@ def api_wrong(store: Store, q: dict) -> dict:
         conn.close()
 
 
+def _exam_remain_ms(started_at: str) -> int:
+    """考试剩余毫秒(超时给负数/0);started_at 是本地时间 TEXT,格式见 now()。"""
+    try:
+        t0 = datetime.strptime(started_at or "", "%Y-%m-%d %H:%M:%S").timestamp()
+    except (TypeError, ValueError):
+        return -1       # 格式不对的当已超时处理(照回收,别把用户锁死)
+    return int(EXAM_MINUTES * 60000 - (time.time() - t0) * 1000)
+
+
+def _exam_load_detail(raw) -> dict:
+    """session.detail 安全解析,json 坏了/不是对象一律当空。"""
+    try:
+        detail = json.loads(raw or "{}")
+    except (TypeError, ValueError):
+        return {}
+    return detail if isinstance(detail, dict) else {}
+
+
 def api_exam_start(store: Store, body: dict) -> dict:
     conn = store.connect()
     try:
@@ -333,9 +352,18 @@ def api_exam_start(store: Store, body: dict) -> dict:
             raise ApiError(409, "可用题不足,无法开始模拟考:" + ";".join(short) + ",先去补题")
         n = len(ox) + len(choice)
         detail = {"kinds": {"ox": len(ox), "choice": len(choice)}, "qids": qids}
-        # 回收弃考的悬空场次(时间用 started_at,别污染成 now)
-        conn.execute(
-            "UPDATE session SET finished_at=started_at WHERE mode='exam' AND finished_at IS NULL")
+        # 开考互联:最近一条未完成的模拟考,没超时就不给再开;已超时的现场回收
+        last = conn.execute(
+            "SELECT * FROM session WHERE mode='exam' AND finished_at IS NULL"
+            " ORDER BY started_at DESC, id DESC LIMIT 1").fetchone()
+        if last is not None:
+            if _exam_remain_ms(last["started_at"]) > 0:
+                raise ApiError(
+                    409, f"有一场未完成的考试(第 {last['id']} 场),"
+                         "先到「模拟考」页恢复或放弃,再开始新的一场")
+            conn.execute(
+                "UPDATE session SET finished_at=started_at WHERE id=? AND finished_at IS NULL",
+                (last["id"],))
         cur = conn.execute(
             "INSERT INTO session (mode, n, n_correct, score, passed, detail, started_at, finished_at)"
             " VALUES ('exam', ?, 0, NULL, NULL, ?, ?, NULL)",
@@ -345,6 +373,122 @@ def api_exam_start(store: Store, body: dict) -> dict:
                 "kinds": {"ox": len(ox), "choice": len(choice)},
                 "ox": [question_item(r) for r in ox],
                 "choice": [question_item(r) for r in choice]}
+    finally:
+        conn.close()
+
+
+def api_exam_current(store: Store, q: dict) -> dict:
+    """断点续考:查最近一条 unfinished 场次,没超时就把题目/已答原样端回去。"""
+    conn = store.connect()
+    try:
+        row = conn.execute(
+            "SELECT * FROM session WHERE mode='exam' AND finished_at IS NULL"
+            " ORDER BY started_at DESC, id DESC LIMIT 1").fetchone()
+        if row is None:
+            return {"current": None}
+        remain_ms = _exam_remain_ms(row["started_at"])
+        if remain_ms <= 0:
+            # 自动弃考:时间用 started_at,别污染成 now
+            conn.execute(
+                "UPDATE session SET finished_at=started_at WHERE id=? AND finished_at IS NULL",
+                (row["id"],))
+            conn.commit()
+            return {"current": None}
+        detail = _exam_load_detail(row["detail"])
+        qids_by_kind = detail.get("qids") or {}
+        items: dict[str, list] = {"ox": [], "choice": []}
+        for kind in KINDS:
+            want = [int(x) for x in (qids_by_kind.get(kind) or [])]
+            if not want:
+                continue
+            marks = ",".join("?" * len(want))
+            by_id = {r["id"]: r for r in conn.execute(
+                f"SELECT {ITEM_COLS} FROM question WHERE id IN ({marks})", want)}
+            # 按 detail 里存的顺序取(开考时的顺序),不能用 IN 的自然序
+            items[kind] = [question_item(by_id[qid]) for qid in want if qid in by_id]
+        # json.dumps 会把 int 键写成字符串 → 还原成 int,前端 Object.keys 才对得上题目 id
+        answers = {}
+        for k, v in (detail.get("answers") or {}).items():
+            try:
+                answers[int(k)] = v
+            except (TypeError, ValueError):
+                continue
+        return {"current": {
+            "session_id": row["id"],
+            "started_at": row["started_at"] or "",
+            "remain_ms": remain_ms,
+            "minutes": EXAM_MINUTES,
+            "kinds": detail.get("kinds") or {"ox": len(items["ox"]), "choice": len(items["choice"])},
+            "answers": answers,
+            "ox": items["ox"],
+            "choice": items["choice"],
+        }}
+    finally:
+        conn.close()
+
+
+def api_exam_pick(store: Store, body: dict) -> dict:
+    """考试过程中逐题落笔:仅改 session.detail.answers,不写 attempt。"""
+    sid = body.get("session_id")
+    if not isinstance(sid, int) or isinstance(sid, bool):
+        raise ApiError(400, "session_id 必须是整数")
+    qid = body.get("question_id")
+    if not isinstance(qid, int) or isinstance(qid, bool):
+        raise ApiError(400, "question_id 必须是整数")
+    chosen = body.get("chosen")
+    if not isinstance(chosen, str):
+        raise ApiError(400, "chosen 必须是字符串(ox 为 A/B,choice 为 A-D)")
+    chosen = chosen.strip().upper()
+
+    conn = store.connect()
+    try:
+        # BEGIN IMMEDIATE:读改写 detail 全程握写锁,和 submit 的并发口径一致
+        conn.execute("BEGIN IMMEDIATE")
+        sess = conn.execute("SELECT * FROM session WHERE id=?", (sid,)).fetchone()
+        if sess is not None and sess["mode"] == "exam" and not sess["finished_at"]:
+            detail = _exam_load_detail(sess["detail"])
+            qids_by_kind = detail.get("qids") or {}
+        else:
+            raise ApiError(400, "该场次已结束")
+        kind_qid = {int(x): k for k in KINDS for x in (qids_by_kind.get(k) or [])}
+        if qid not in kind_qid:
+            raise ApiError(400, f"该题不在本场考试里: {qid}")
+        qrow = conn.execute("SELECT kind FROM question WHERE id=?", (qid,)).fetchone()
+        if qrow is None:
+            raise ApiError(404, f"题目不存在: {qid}")
+        allowed = ("A", "B") if qrow["kind"] == "ox" else ("A", "B", "C", "D")
+        if chosen not in allowed:
+            raise ApiError(400, f"chosen 必须是 {'/'.join(allowed)} 之一")
+        answers = detail.get("answers")
+        if not isinstance(answers, dict):
+            answers = {}
+        answers[qid] = chosen                     # int 键(json.dumps 会存成字符串,读回时转 int)
+        detail["answers"] = answers
+        cur = conn.execute(
+            "UPDATE session SET detail=? WHERE id=? AND mode='exam' AND finished_at IS NULL",
+            (json.dumps(detail, ensure_ascii=False), sid))
+        if cur.rowcount == 0:                     # 读到之后刚被人交卷/弃考 → 不覆盖
+            raise ApiError(400, "该场次已结束")
+        conn.commit()
+        return {"ok": True}
+    finally:
+        conn.close()
+
+
+def api_exam_abandon(store: Store, body: dict) -> dict:
+    """弃考:finished_at=started_at,不写 attempt、不算分。"""
+    sid = body.get("session_id")
+    if not isinstance(sid, int) or isinstance(sid, bool):
+        raise ApiError(400, "session_id 必须是整数")
+    conn = store.connect()
+    try:
+        cur = conn.execute(
+            "UPDATE session SET finished_at=started_at"
+            " WHERE id=? AND mode='exam' AND finished_at IS NULL", (sid,))
+        conn.commit()
+        if cur.rowcount == 0:
+            raise ApiError(400, "该场次已结束")
+        return {"ok": True}
     finally:
         conn.close()
 
@@ -492,6 +636,9 @@ ROUTES = {
     ("POST", "/api/answer"): api_answer,
     ("GET", "/api/wrong"): api_wrong,
     ("POST", "/api/exam/start"): api_exam_start,
+    ("GET", "/api/exam/current"): api_exam_current,
+    ("POST", "/api/exam/pick"): api_exam_pick,
+    ("POST", "/api/exam/abandon"): api_exam_abandon,
     ("POST", "/api/exam/submit"): api_exam_submit,
     ("GET", "/api/stats"): api_stats,
 }
