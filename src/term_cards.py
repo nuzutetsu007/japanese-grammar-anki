@@ -7,15 +7,16 @@
 
 布局 tier(默认,配合 term_triage.py 的分档):
     牌组  特定技能::用語::01_必須(档1)/ 02_重要(档2)/ 03_補完(档3)
-          00_削除 只装被 triage 剔除、还没发过的噪声卡
-    标签  用語 / 用語::<类别> / 用語::難度::N / 用語::優先::1|2|3
-          剔除词打 用語::削除候補,随包发一次后 skip_sent=1,以后不再发
+    标签  用語 / 用語::難度::N        (v3:类别、優先标签已去掉,精简)
+    剔除词(status=skip 且没发过)带 用語::削除候補 进 00_削除,
+    随包发一次后 skip_sent=1,以后不再发。
 
-导入行为(实测 Anki 26.9):重导入只**原地更新字段/标签**、保留学习进度,
-**不会**把已有卡片迁到新牌组 —— 迁移靠浏览器「按标签改牌组」。
+v3 起卡片模板不再显示类别。交付口径 = 「删掉旧牌组 → 全新导入」的干净流程。
+(教训:Anki 实测重导入只原地更新字段/标签、保留进度,**不会**迁牌组;
+中途换布局就得手动按标签改牌组,方案已放弃。)
 
 只出 confidence=established / common_claim 的;uncertain(抽取噪声)一律不出。
-guid 由 guid_key(默认 "term:reading")稳定生成 → 重导入是**更新**而不是重复。
+guid 由 guid_key(默认 "term:reading")稳定生成 → 同库重导入是**更新**而不是重复。
 出完把 status 记成 carded;含剔除词的那次会把 skip_sent 置 1。
 """
 
@@ -33,7 +34,7 @@ from common import MEDIA_DIR, OUT_DIR, connect, init_db, log_run, now   # noqa: 
 
 import genanki                                              # noqa: E402
 
-EXPORT_VERSION = "term_cards_v2"
+EXPORT_VERSION = "term_cards_v3"
 NOTE_TYPE = "特定技能-用語"
 MODEL_ID = int(hashlib.sha1(b"term-cards:model:vocab").hexdigest()[:8], 16)
 DECK_ROOT = "特定技能::用語"
@@ -65,15 +66,14 @@ MODEL = genanki.Model(
              "Audio"]],
     templates=[{
         "name": "用語",
-        "qfmt": '<div class="term">{{Term}}</div>'
-                '<div class="meta">{{Category}}</div>',
+        "qfmt": '<div class="term">{{Term}}</div>',
         "afmt": '<hr id="answer">\n'
                 '<div class="term">{{Term}}{{#Reading}}'
                 '<span class="rd">　{{Reading}}</span>{{/Reading}}</div>\n'
                 '{{Audio}}\n'
                 '<div class="zh">{{Zh}}</div>\n'
                 '<div class="note">{{Note}}</div>\n'
-                '<div class="meta">{{Difficulty}}　{{Category}}　原書 p.{{Pages}}</div>',
+                '<div class="meta">{{Difficulty}}　原書 p.{{Pages}}</div>',
     }],
     css=CSS,
 )
@@ -94,11 +94,9 @@ def deck_id(name: str) -> int:
 
 
 def tags_for(r) -> list[str]:
-    tags = ["用語", f"用語::{r['category']}", f"用語::難度::{r['difficulty']}"]
+    tags = ["用語", f"用語::難度::{r['difficulty']}"]   # v3:类别/優先标签已去掉
     if r["status"] == "skip":
         tags.append("用語::削除候補")          # 只随包发一次,方便一键删卡
-    else:
-        tags.append(f"用語::優先::{r['tier'] or '3'}")
     return tags
 
 
