@@ -54,6 +54,7 @@ function showBanner(msg, kind) {
   const b = $('#banner');
   b.textContent = msg;
   b.className = 'banner ' + (kind === 'ok' ? 'ok' : 'err');
+  b.setAttribute('role', kind === 'ok' ? 'status' : 'alert');   // 报错用 alert,读屏会主动播报
   if (bannerTimer) clearTimeout(bannerTimer);
   bannerTimer = setTimeout(function () { b.className = 'banner hidden'; }, kind === 'ok' ? 4000 : 9000);
 }
@@ -156,6 +157,8 @@ class PracticeCard {
   }
 
   handleKey(e) {
+    const ae = document.activeElement;
+    if (ae && ae.tagName === 'BUTTON' && this.card.contains(ae)) return;   /* 焦点在卡内按钮:交给 click,防双触发跳题 */
     if (e.key === 'Enter' || e.key === ' ') {
       if (this.chosen) {
         e.preventDefault();
@@ -169,8 +172,8 @@ class PracticeCard {
       if (k === 'A' || e.key === '1') this.choose('A');
       else if (k === 'B' || e.key === '2') this.choose('B');
     } else {
-      if (LETTERS.indexOf(k) >= 0) this.choose(k);
-      else if (['1', '2', '3', '4'].indexOf(e.key) >= 0) this.choose(LETTERS[Number(e.key) - 1]);
+      if (LETTERS.indexOf(k) >= 0 && this.buttons[k]) this.choose(k);
+      else if (['1', '2', '3', '4'].indexOf(e.key) >= 0 && this.buttons[LETTERS[Number(e.key) - 1]]) this.choose(LETTERS[Number(e.key) - 1]);
     }
   }
 
@@ -237,8 +240,10 @@ class PracticeCard {
     // 答完默认平滑跳到解说(判定 + 中文解释 + 日语解说);「下一题」按钮底部常驻,不用找
     requestAnimationFrame(function () {
       const rect = self.feedback.getBoundingClientRect();
-      if (Math.abs(rect.top - 96) > 24) {      // 已经基本对齐就不动,避免碎跳
-        window.scrollTo({ top: window.scrollY + rect.top - 96, behavior: 'smooth' });
+      const tb = document.querySelector('.topbar');
+      const off = (tb ? tb.offsetHeight : 90) + 6;   // 跟顶栏实际高度对齐,免得被 sticky 盖住
+      if (Math.abs(rect.top - off) > 24) {      // 已经基本对齐就不动,避免碎跳
+        window.scrollTo({ top: window.scrollY + rect.top - off, behavior: 'smooth' });
       }
     });
   }
@@ -270,6 +275,11 @@ class PracticeSession {
     line.appendChild(el('span', { cls: 'p', text: '第 ' + (this.idx + 1) + '/' + this.items.length + ' 题' }));
     if (this.nAnswered) {
       line.appendChild(el('span', { cls: 'muted', text: '已答 ' + this.nAnswered + ' · 对 ' + this.nCorrect }));
+    }
+    if (this.opts.onAbort) {   // 中途不想刷了:一键回筛选面板,不用滚到页顶
+      const ab = el('button', { cls: 'btn small', attrs: { type: 'button' }, text: '中断 · 换条件' });
+      ab.addEventListener('click', () => this.opts.onAbort());
+      line.appendChild(ab);
     }
     this.stage.appendChild(line);
 
@@ -404,6 +414,7 @@ async function startPractice(stage, btn) {
     const sess = new PracticeSession(stage, data.items, {
       restartLabel: '换一批',
       onRestart: function () { startPractice(stage, btn); },
+      onAbort: function () { renderPractice($('#view')); },
     });
     sess.start();
   } catch (e) {
@@ -419,6 +430,7 @@ async function startPractice(stage, btn) {
 async function renderWrong(view) {
   clear(view);
   view.appendChild(el('div', { cls: 'muted', text: '加载中…' }));
+  const myTab = state.tab;   /* 若期间用户切走 tab,响应就丢掉,不覆盖别的页面 */
   let data;
   try {
     data = await api('/api/wrong');
@@ -427,6 +439,7 @@ async function renderWrong(view) {
     view.appendChild(el('div', { cls: 'empty', text: '加载失败,请看上方提示' }));
     return;
   }
+  if (state.tab !== myTab) return;
   state.wrongItems = data.items;
 
   clear(view);
@@ -469,6 +482,7 @@ async function renderWrong(view) {
         onRestart: function () { renderWrong(view); },
         exitLabel: '返回错题本',
         onExit: function () { renderWrong(view); },
+        onAbort: function () { renderWrong(view); },
         onAnswered: async function (item) {
           const fresh = await api('/api/wrong');
           state.wrongItems = fresh.items;
@@ -513,6 +527,13 @@ function renderExamIntro(view) {
       cls: 'muted',
       text: '当前题库可用:○× ' + meta.kinds.ox + ' 题 · 4択 ' + meta.kinds.choice + ' 题',
     }));
+    if (meta.kinds.ox < 30) {
+      panel.appendChild(el('div', {
+        cls: 'exam-warn',
+        text: '学科題不足,本次只有 ' + meta.kinds.ox + ' 题(真题 30 题' +
+          (meta.kinds.ox < 20 ? ',不足 20 题无法达标,不建议开考' : ',合格线仍按 20 题算)') + ')',
+      }));
+    }
     if (meta.kinds.choice < 10) {
       panel.appendChild(el('div', {
         cls: 'exam-warn',
@@ -565,7 +586,7 @@ function startExamTimer() {
       t.textContent = fmtTime(ex.remainMs);
       t.classList.toggle('low', ex.remainMs <= 5 * 60000);
     }
-    if (ex.remainMs <= 0 && !ex.submitted) submitExam(true);
+    if (ex.remainMs <= 0 && !ex.submitted && !ex.submitFailed) submitExam(true);   /* 交卷失败后不再每秒自动重发 */
   };
   tick();
   ex.timerId = setInterval(tick, 1000);
@@ -597,6 +618,12 @@ function renderExamPaper(view) {
   head.appendChild(right);
   view.appendChild(head);
 
+  if (ex.session.kinds.ox < 30) {
+    view.appendChild(el('div', {
+      cls: 'exam-warn',
+      text: '学科題不足,本次只有 ' + ex.session.kinds.ox + ' 题(合格线仍按 20 题算)',
+    }));
+  }
   if (ex.session.kinds.choice < 10) {
     view.appendChild(el('div', {
       cls: 'exam-warn',
@@ -612,6 +639,9 @@ function renderExamPaper(view) {
     const b = el('button', { attrs: { type: 'button' }, text: String(i + 1) });
     if (ex.answers[q.id]) b.classList.add('done');
     b.addEventListener('click', function () {
+      if (ex.currentCell) ex.currentCell.classList.remove('current');   /* 标出当前看的题,别让样式变死规则 */
+      ex.currentCell = b;
+      b.classList.add('current');
       const node = document.getElementById('examq-' + q.id);
       if (node) node.scrollIntoView({ block: 'center' });
     });
@@ -649,7 +679,7 @@ function examQuestionBlock(ex, q, no) {
   const box = el('div', { cls: 'card exam-q', attrs: { id: 'examq-' + q.id } });
   const head = el('div', { cls: 'cardhead' });
   head.appendChild(el('span', { cls: 'badge kind-' + q.kind, text: KIND_LABEL[q.kind] || q.kind }));
-  head.appendChild(el('span', { cls: 'tag', text: '第 ' + no + ' 题' }));
+  head.appendChild(el('span', { cls: 'tag qno', text: '第 ' + no + ' 题' }));
   if (q.chapter) head.appendChild(el('span', { cls: 'tag', text: chapterLabel(q.chapter) }));
   if (q.pages) head.appendChild(el('span', { cls: 'tag pages', text: '教材 p.' + q.pages }));
   box.appendChild(head);
@@ -698,8 +728,10 @@ async function submitExam(auto) {
   const ex = state.exam;
   if (!ex || ex.submitted) return;
   const unanswered = ex.questions.length - Object.keys(ex.answers).length;
-  if (!auto && unanswered > 0) {
-    if (!window.confirm('还有 ' + unanswered + ' 题没作答(未作答按错算),确定交卷吗?')) return;
+  if (!auto) {   /* 有没答的要警告;全答完也给一次确认,防手滑直接锁定 */
+    if (!window.confirm(unanswered > 0
+      ? '还有 ' + unanswered + ' 题没作答(未作答按错算),确定交卷吗?'
+      : '已全部作答,确定交卷吗?')) return;
   }
   ex.submitted = true;
   if (ex.timerId) { clearInterval(ex.timerId); ex.timerId = null; }
@@ -716,6 +748,8 @@ async function submitExam(auto) {
     showBanner(auto ? '时间到,已自动交卷' : '已交卷', 'ok');
   } catch (e) {
     ex.submitted = false;
+    ex.submitFailed = true;   /* 计时器停在这,不再每秒触发自动交卷,等用户手动重试 */
+    showBanner('交卷失败(服务没响应),稍后手动点「交卷并看结果」重试', 'err');
     setUnloadGuard(true);
     startExamTimer();
     return;
@@ -789,7 +823,7 @@ function renderExamResult(view) {
     box.appendChild(rightAns);
     box.appendChild(el('div', { cls: 'expl' }, [el('div', { text: d.explanation_zh || '(暂无中文解释)' })]));
     if (d.explanation_ja) {
-      const det = el('details');
+      const det = el('details', { attrs: { open: '' } });   /* 与练习页一致:默认展开 */
       det.appendChild(el('summary', { text: '教材解説(日语原解说)' }));
       det.appendChild(el('div', { cls: 'ja', text: d.explanation_ja }));
       box.appendChild(det);
@@ -812,6 +846,7 @@ function choiceText(q, letter) {
 async function renderStats(view) {
   clear(view);
   view.appendChild(el('div', { cls: 'muted', text: '加载中…' }));
+  const myTab = state.tab;   /* 异步响应防串台 */
   let s;
   try {
     s = await api('/api/stats');
@@ -820,6 +855,7 @@ async function renderStats(view) {
     view.appendChild(el('div', { cls: 'empty', text: '加载失败,请看上方提示' }));
     return;
   }
+  if (state.tab !== myTab) return;
   clear(view);
 
   const grid = el('div', { cls: 'statgrid' });
@@ -858,7 +894,9 @@ async function renderStats(view) {
     ]));
   });
   t1.appendChild(tb1);
-  kindPanel.appendChild(t1);
+  const tw1 = el('div', { cls: 'tablewrap' });   /* 手机上给表格横向滚动,别撑爆整页 */
+  tw1.appendChild(t1);
+  kindPanel.appendChild(tw1);
   view.appendChild(kindPanel);
 
   const sessPanel = el('div', { cls: 'panel' });
@@ -890,7 +928,9 @@ async function renderStats(view) {
       ]));
     });
     t2.appendChild(tb2);
-    sessPanel.appendChild(t2);
+    const tw2 = el('div', { cls: 'tablewrap' });
+    tw2.appendChild(t2);
+    sessPanel.appendChild(tw2);
   }
   view.appendChild(sessPanel);
 }
@@ -905,6 +945,7 @@ function setTab(name) {
   activeCard = null;
   document.querySelectorAll('#tabs button').forEach(function (b) {
     b.classList.toggle('active', b.dataset.tab === name);
+    b.setAttribute('aria-selected', b.dataset.tab === name ? 'true' : 'false');
   });
   const view = $('#view');
   TABS[name](view);
@@ -922,7 +963,15 @@ function onKeydown(e) {
 async function boot() {
   document.querySelectorAll('#tabs button').forEach(function (b) {
     b.addEventListener('click', function () { setTab(b.dataset.tab); });
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-selected', b.dataset.tab === 'practice' ? 'true' : 'false');
   });
+  const tb = document.querySelector('.topbar');
+  if (tb) {   /* 顶栏实际高度喂给 CSS 变量 --tb,所有 sticky/scroll-margin 跟着走 */
+    const setTb = function () { document.documentElement.style.setProperty('--tb', tb.offsetHeight + 'px'); };
+    setTb();
+    window.addEventListener('resize', setTb);
+  }
   document.addEventListener('keydown', onKeydown);
   try {
     state.meta = await api('/api/meta');

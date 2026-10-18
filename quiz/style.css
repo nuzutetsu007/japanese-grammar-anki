@@ -13,9 +13,11 @@
   --ng-soft: #fdeee6;
   --warn-bg: #fdf6da;
   --warn-fg: #8a6100;
+  --tb: 90px;   /* 顶栏实际高度,boot() 里用 JS 实测覆盖;sticky/scroll-margin 全部引用它 */
 }
 
 * { box-sizing: border-box; }
+button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 html, body { margin: 0; padding: 0; }
 body {
   background: var(--bg);
@@ -62,10 +64,8 @@ body {
   padding: 18px; margin-bottom: 14px;
 }
 .panel h2 { margin: 0 0 10px; font-size: 18px; }
-.panel h3 { margin: 18px 0 8px; font-size: 15px; color: var(--muted); }
 .muted { color: var(--muted); font-size: 13px; }
 .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-.spread { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
 
 button.btn {
   appearance: none; cursor: pointer; font-size: 15px;
@@ -78,7 +78,7 @@ button.btn.primary:hover { background: #1d4fd8; }
 button.btn:disabled { opacity: .5; cursor: not-allowed; }
 button.btn.small { padding: 6px 12px; font-size: 13px; }
 
-select, input[type="text"] {
+select {
   font: inherit; padding: 8px 10px; border: 1px solid var(--line);
   border-radius: 8px; background: #fff; color: var(--fg);
 }
@@ -117,7 +117,7 @@ label.field { display: inline-flex; align-items: center; gap: 6px; font-size: 14
 .choices .opt:hover { border-color: var(--accent); background: var(--accent-soft); }
 .choices .opt .letter {
   display: inline-block; min-width: 22px; height: 22px; line-height: 22px; text-align: center;
-  border-radius: 6px; background: #eef1f5; color: var(--muted); font-size: 13px; font-weight: 700;
+  border-radius: 6px; background: #e9edf2; color: #556074; font-size: 13px; font-weight: 700;
   flex: none; margin-top: 2px;
 }
 .choices .opt .ctext { white-space: pre-wrap; word-break: break-word; }
@@ -134,17 +134,19 @@ label.field { display: inline-flex; align-items: center; gap: 6px; font-size: 14
 .feedback .verdict { font-weight: 700; font-size: 16px; }
 .feedback .verdict.ok { color: var(--ok); }
 .feedback .verdict.ng { color: var(--ng); }
-.feedback .expl { margin-top: 8px; font-size: 15px; }
-.feedback .expl-label { color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .04em; }
-.feedback details { margin-top: 10px; }
-.feedback details summary { cursor: pointer; color: var(--accent); font-size: 14px; }
-.feedback details .ja { white-space: pre-wrap; font-size: 14px; color: #334; margin: 8px 0 0; }
+.feedback .expl, .review-item .expl { margin-top: 8px; font-size: 15px; word-break: break-word; }
+.feedback .expl-label, .review-item .expl-label { color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+.feedback details, .review-item details { margin-top: 10px; }
+.feedback details summary, .review-item details summary { cursor: pointer; color: var(--accent); font-size: 14px; }
+.feedback details .ja, .review-item .ja { white-space: pre-wrap; word-break: break-word; font-size: 14px; color: #334; margin: 8px 0 0; }
 .feedback .note { margin-top: 8px; font-size: 14px; color: var(--ok); font-weight: 600; }
 .feedback .nextrow {
   position: sticky; bottom: 0; z-index: 3;     /* 「下一题」常驻屏幕底部,不用再翻找 */
   margin: 14px -18px -18px; padding: 10px 18px 12px;
   background: #fff; border-top: 1px solid var(--line);
+  box-shadow: 0 -6px 12px rgba(0, 0, 0, .05);   /* 提示下面还有内容,盲滚到底也不突然 */
   border-radius: 0 0 11px 11px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
   display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
 }
 .kbdhint { color: var(--muted); font-size: 12px; }
@@ -172,7 +174,7 @@ label.field { display: inline-flex; align-items: center; gap: 6px; font-size: 14
   border-radius: 8px; padding: 8px 12px; font-size: 14px; margin-bottom: 12px;
 }
 .exam-head {
-  position: sticky; top: 74px; z-index: 5;
+  position: sticky; top: calc(var(--tb) - 1px); z-index: 5;
   background: #fff; border: 1px solid var(--line); border-radius: 12px;
   padding: 10px 14px; margin-bottom: 14px;
   display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between;
@@ -188,11 +190,11 @@ label.field { display: inline-flex; align-items: center; gap: 6px; font-size: 14
   padding: 7px 0; border-radius: 8px; border: 1px solid var(--line);
   background: #eef1f5; color: var(--muted); font-variant-numeric: tabular-nums;
 }
-.navgrid button.done { background: #d8f0e0; border-color: #8ccaa3; color: #14532d; font-weight: 700; }
+.navgrid button.done { background: #d8f0e0; border-color: #8ccaa3; color: #14532d; font-weight: 700; box-shadow: inset 0 0 0 1px #15803d; }
 .navgrid button.current { outline: 2px solid var(--accent); outline-offset: 1px; }
 .navgrid button:hover { border-color: var(--accent); }
 
-.exam-q { scroll-margin-top: 150px; }
+.exam-q { scroll-margin-top: calc(var(--tb) + 84px); }   /* 顶栏 + 考试头高度 + 余量 */
 .exam-q .qno { font-weight: 700; margin-right: 8px; }
 .exam-q.answered .qno { color: var(--accent); }
 
@@ -206,12 +208,11 @@ label.field { display: inline-flex; align-items: center; gap: 6px; font-size: 14
 .exam-q .choices .opt.picked:hover { background: #dce8fd; }
 /* 未选中的悬停别做成「像被选中」,只给很淡的提示 */
 .exam-q .choices .opt:not(.picked):hover { background: #f8fafd; border-color: #b9c9ee; }
-.mark { border-left: 4px solid var(--line); padding-left: 12px; }
-.mark.correct { border-left-color: #74c08e; }
-.mark.wrong { border-left-color: #eda87f; }
 
 /* ---------------------------------------------------------------- 统计 */
-.statgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.tablewrap { overflow-x: auto; }   /* 窄屏时表格在容器里滚,不撑破页面 */
+.statgrid {
+ display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
 .stat {
   background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px;
 }
@@ -240,13 +241,16 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   .view { padding: 12px 10px 50px; }
   .topbar { padding: 8px 10px 0; }
   .tabs button { padding: 8px 12px; font-size: 14px; }
-  .card, .panel { padding: 14px; border-radius: 10px; }
-  .card { scroll-margin-top: 84px; }
-  .feedback .nextrow { margin: 12px -14px -14px; padding: 10px 14px 12px; border-radius: 0 0 9px 9px; }
+  .card, .panel { padding: 14px; border-radius: 10px; }   /* .card 的 scroll-margin-top 用 --tb 变量,不再写死 84px */
+  .feedback .nextrow { margin: 12px -14px -14px; padding: 10px 14px calc(12px + env(safe-area-inset-bottom)); border-radius: 0 0 9px 9px; }
   .kbdhint { display: none; }
   .choices.ox { flex-direction: column; }
   .choices.ox .opt { font-size: 17px; padding: 16px 12px; }
-  .exam-head { top: 66px; }
+  /* 顶部 sticky 两层(顶栏 + 考试头)加起来在手机上很占高:顶栏会折行,考试头减负 */
+  .exam-head { flex-wrap: nowrap; }
+  .exam-head .muted { display: none; }
+  .exam-head .timer { font-size: 20px; }
+  .exam-q { scroll-margin-top: calc(var(--tb) + 72px); }
   .wrongitem { flex-direction: column; align-items: stretch; }
   .wrongitem .wstem { white-space: normal; }
 }
