@@ -372,11 +372,16 @@ python3 src/quiz_gen.py import data/out/quiz_*.jsonl # 入库(按题干去重,�
 python3 src/quiz_gen.py gen --kind ox --workers 4    # AI 出 ○× 题直接入库
 python3 src/quiz_gen.py gen --kind choice --workers 4 --out data/out/quiz_ai_choice.jsonl
                                                      # 4択 也可写 JSONL(多进程并行出题用这个)
-python3 src/quiz_gen.py verify --limit 200           # 第二个模型审题 ok/doubtful/wrong
+python3 src/quiz_gen.py verify --limit 200           # 第二个模型审题 ok/doubtful/wrong(逐条落盘)
 python3 src/quiz_gen.py explain                      # 补中文解释(textbook 优先改写日语解説)
+python3 src/quiz_gen.py shuffle                      # 洗牌 AI choice 选项 → 答案字母 A~D 均匀分布
+python3 src/quiz_gen.py gen --kind ox --chunk 15     # 只补某个块(单块失败后补题用)
 python3 src/quiz_gen.py stats                        # 看看库里有多少能用的
 python3 src/quiz_web.py                              # 刷题网页 http://127.0.0.1:8765
 ```
+
+- 全程幂等、可断点:出题只做没出过的块,verify/explain 只处理没审/没解释的题,
+  中断后原样重跑即可(已完成的不会重做)。
 
 - 额度分派:○× 输出小(`max_tokens=900`),Groq 免费层(OTPM 1000)也能接;
   4択 输出大(`max_tokens=1900`),超 OTPM 的 provider 被调度器自动跳过。

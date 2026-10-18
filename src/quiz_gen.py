@@ -42,6 +42,7 @@ QUIZ_SCHEMA = ROOT / "src" / "quiz_schema.sql"
 GUIDE_MD = OUT_DIR / "pdf_md" / "studyguide1_02.md"
 
 KIND_OX, KIND_CHOICE = "ox", "choice"
+LETTERS = "ABCD"
 PROMPTS = {KIND_OX: "quiz_ox_v1", KIND_CHOICE: "quiz_choice_v2"}
 VERIFY_PROMPT = "quiz_verify_v2"
 EXPLAIN_PROMPT = "quiz_explain_v1"
@@ -350,6 +351,9 @@ def cmd_gen(conn: sqlite3.Connection, a) -> int:
     if a.chapter:
         q += " AND c.chapter=?"
         p.append(a.chapter)
+    if a.chunk:
+        q += " AND c.id=?"
+        p.append(a.chunk)
     q += " ORDER BY c.chapter, c.ordinal"
     tasks = [dict(r) for r in conn.execute(q, p) if a.redo or not r["done"]]
     if a.limit:
@@ -526,6 +530,7 @@ def cmd_verify(conn: sqlite3.Connection, a) -> int:
                          " review_note=?, updated_at=? WHERE id=?",
                          (verdict, data.get("_model", ""), VERIFY_PROMPT,
                           str(data.get("reason") or "")[:200], now(), row["id"]))
+            conn.commit()          # 逐条落盘:中断/被杀也只丢当前这条,且不长时间霸占写锁
             tgt += 1
             stat[verdict] += 1
             print(f"    {verdict:<8} #{row['id']} {row['stem'][:34]}", flush=True)
@@ -590,10 +595,60 @@ def cmd_explain(conn: sqlite3.Connection, a) -> int:
                 continue
             conn.execute("UPDATE question SET explanation_zh=?, explain_model=?, explain_version=?, updated_at=? WHERE id=?",
                          (txt, data.get("_model", ""), EXPLAIN_PROMPT, now(), row["id"]))
+            conn.commit()          # 逐条落盘(同上:可断点续跑,不霸锁)
             done += 1
     conn.commit()
     log_run(conn, "quiz_explain", EXPLAIN_PROMPT, started, done, failed, "")
     print(f"[quiz_gen] 完成 {done} / 失败 {failed} / {time.time() - t0:.0f}s")
+    return 0
+
+
+def cmd_shuffle(conn: sqlite3.Connection, a) -> int:
+    """重排 choice 题(AI 出的)选项,让正确答案字母在 A~D 上均匀分布。
+
+    * 按题 id 定种子 → 结果可复现;重复跑会再次洗牌(分布仍均匀)。
+    * 解释里引用了选项字母的会被清空(留给 explain 按新顺序重写)。
+    """
+    import random
+    ref_re = re.compile(r"选项\s*[ABCD]|選択肢\s*[ABCD]|[「『][ABCD][」』]"
+                        r"|[ABCD][、,]\s*[ABCD]|^[ABCD][はがを]")
+    rows = conn.execute("SELECT id, choices, answer, explanation_zh FROM question"
+                        " WHERE kind=? AND origin='ai' ORDER BY id", (KIND_CHOICE,)).fetchall()
+    if not rows:
+        print("[quiz_gen] 没有可洗牌的 choice 题")
+        return 0
+    started = now()
+    counts = {c: 0 for c in LETTERS}
+    n_ok = n_skip = n_clear = 0
+    for r in rows:
+        try:
+            ch = json.loads(r["choices"] or "[]")
+        except json.JSONDecodeError:
+            ch = []
+        old = LETTERS.find(str(r["answer"] or "").strip().upper())
+        if old < 0 or len(ch) != 4:
+            n_skip += 1
+            continue
+        correct = ch[old]
+        others = [c for i, c in enumerate(ch) if i != old]
+        rng = random.Random(8657 + int(r["id"]))
+        best = min(counts.values())
+        target = rng.choice([c for c in LETTERS if counts[c] == best])
+        idx = LETTERS.index(target)
+        rng.shuffle(others)
+        new = others[:idx] + [correct] + others[idx:]
+        counts[target] += 1
+        expl = r["explanation_zh"] or ""
+        clear = bool(ref_re.search(expl))
+        n_clear += clear
+        conn.execute("UPDATE question SET choices=?, answer=?, explanation_zh=?, updated_at=? WHERE id=?",
+                     (json.dumps(new, ensure_ascii=False), target, "" if clear else expl, now(), r["id"]))
+        n_ok += 1
+    conn.commit()
+    dist = " ".join(f"{c}:{counts[c]}" for c in LETTERS)
+    log_run(conn, "quiz_shuffle", "n/a", started, n_ok, n_skip, f"目标分布 {dist} / 清解释 {n_clear}")
+    print(f"[quiz_gen] 洗牌 {n_ok} 题 / 跳过 {n_skip} / 因引用字母清解释 {n_clear}")
+    print(f"[quiz_gen] 洗牌后答案分布: {dist}")
     return 0
 
 
@@ -631,6 +686,7 @@ def main() -> int:
     pg = sub.add_parser("gen")
     pg.add_argument("--kind", default=KIND_OX, choices=[KIND_OX, KIND_CHOICE])
     pg.add_argument("--chapter", default="")
+    pg.add_argument("--chunk", type=int, default=0)
     pg.add_argument("--limit", type=int, default=0)
     pg.add_argument("--workers", type=int, default=4)
     pg.add_argument("--per-chunk", type=int, default=0, dest="per_chunk")
@@ -659,6 +715,7 @@ def main() -> int:
     pe.add_argument("--workers", type=int, default=4)
     pe.add_argument("--chain", default="")
 
+    sub.add_parser("shuffle")
     sub.add_parser("stats")
     a = ap.parse_args()
 
@@ -677,6 +734,8 @@ def main() -> int:
         return cmd_import(conn, a)
     if a.cmd == "verify":
         return cmd_verify(conn, a)
+    if a.cmd == "shuffle":
+        return cmd_shuffle(conn, a)
     if a.cmd == "explain":
         return cmd_explain(conn, a)
     if a.cmd == "stats":
