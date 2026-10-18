@@ -31,7 +31,7 @@ import sys
 import time
 import unicodedata
 from collections import Counter
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -516,7 +516,8 @@ def cmd_verify(conn: sqlite3.Connection, a) -> int:
         return row, data
 
     with ThreadPoolExecutor(max_workers=max(1, a.workers)) as ex:
-        for fut in [ex.submit(work, r) for r in rows]:
+        futs = [ex.submit(work, r) for r in rows]
+        for fut in as_completed(futs):          # 完成即处理:一个慢请求不堵住已完成的结果
             try:
                 row, data = fut.result()
             except Exception as e:  # noqa: BLE001
@@ -582,7 +583,8 @@ def cmd_explain(conn: sqlite3.Connection, a) -> int:
     started = now()
     done = failed = 0
     with ThreadPoolExecutor(max_workers=max(1, a.workers)) as ex:
-        for fut in [ex.submit(work, r) for r in rows]:
+        futs = [ex.submit(work, r) for r in rows]
+        for fut in as_completed(futs):          # 完成即处理:一个慢请求不堵住已完成的结果
             try:
                 row, data = fut.result()
             except Exception as e:  # noqa: BLE001
