@@ -156,14 +156,20 @@ label.field { display: inline-flex; align-items: center; gap: 6px; font-size: 14
 
 /* ---------------------------------------------------------------- 错题本 */
 .wrongitem {
-  display: flex; gap: 12px; align-items: center; justify-content: space-between;
+  display: block; cursor: pointer;
   padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
   background: #fff; margin-bottom: 8px;
 }
+.wrongitem.open { border-color: var(--accent); }
+.wrongtop { display: flex; gap: 12px; align-items: center; justify-content: space-between; }
 .wrongitem .wstem {
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0;
 }
-.wrongitem .wmeta { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.wrongitem .wmeta { color: var(--muted); font-size: 12px; white-space: nowrap; flex: none; }
+.wrongdetail { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.wrongdetail .stem { font-size: 15px; line-height: 1.7; margin: 0 0 8px; white-space: pre-wrap; word-break: break-word; }
+.wrongdetail .wchoices { margin: 4px 0 10px; padding-left: 22px; font-size: 14px; color: #334; }
+.wrongdetail .wchoices li { margin: 4px 0; }
 .empty {
   text-align: center; color: var(--muted); padding: 40px 20px; font-size: 16px;
 }
@@ -252,6 +258,6 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   .exam-head .muted { display: none; }
   .exam-head .timer { font-size: 20px; }
   .exam-q { scroll-margin-top: calc(var(--tb) + 72px); }
-  .wrongitem { flex-direction: column; align-items: stretch; }
+  .wrongtop { flex-direction: column; align-items: stretch; }
   .wrongitem .wstem { white-space: normal; }
 }

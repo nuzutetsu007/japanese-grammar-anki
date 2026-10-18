@@ -451,25 +451,100 @@ async function renderWrong(view) {
   const stage = el('div');
   const btnRow = el('div', { cls: 'row' });
 
+  let reviewBtn = null;      /* 单题重做要把主按钮置灰 */
+  let rowMap = {};           /* id → {item, right}:答题后局部更新,不全量拉取 */
+
   function drawList(items) {
     clear(listBox);
+    rowMap = {};
     items.forEach(function (it) {
       const row = el('div', { cls: 'wrongitem' });
+      const top = el('div', { cls: 'wrongtop' });
       const left = el('div', { cls: 'wstem', attrs: { title: it.stem }, text: it.stem });
       const right = el('div', { cls: 'wmeta' });
       right.appendChild(el('span', { cls: 'badge kind-' + it.kind, text: it.kind === 'ox' ? '○×' : '4択' }));
       right.appendChild(el('span', { text: ' 错 ' + it.wrong_count + ' 次 · 连对 ' + it.streak + '/2' }));
-      row.appendChild(left);
-      row.appendChild(right);
+      top.appendChild(left);
+      top.appendChild(right);
+
+      /* 展开区:完整题干 + 章节/页码 + 选项(不标答案,防剧透) + 单题重做 */
+      const detail = el('div', { cls: 'wrongdetail hidden' });
+      detail.appendChild(el('div', { cls: 'stem', text: it.stem }));
+      const bits = [];
+      if (it.chapter) bits.push(chapterLabel(it.chapter));
+      if (it.pages) bits.push('教材 p.' + it.pages);
+      if (bits.length) detail.appendChild(el('div', { cls: 'muted', text: bits.join(' · ') }));
+      if (it.kind !== 'ox' && (it.choices || []).length) {
+        const ul = el('ul', { cls: 'wchoices' });
+        it.choices.forEach(function (c, i) {
+          ul.appendChild(el('li', { text: (LETTERS[i] || '?') + '. ' + c }));
+        });
+        detail.appendChild(ul);
+      }
+      detail.appendChild(el('div', { cls: 'muted', text: '这里不给答案——点「重做这题」自己再判一次' }));
+      const redo = el('button', { cls: 'btn small', attrs: { type: 'button' }, text: '重做这题' });
+      redo.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        redoOne(it);
+      });
+      detail.appendChild(redo);
+
+      row.appendChild(top);
+      row.appendChild(detail);
+      row.addEventListener('click', function () {
+        detail.classList.toggle('hidden');
+        row.classList.toggle('open');
+      });
+      rowMap[it.id] = { item: it, right: right };
       listBox.appendChild(row);
     });
+  }
+
+  function refreshRow(e) {
+    if (!e || !e.right) return;
+    while (e.right.firstChild) e.right.removeChild(e.right.firstChild);
+    e.right.appendChild(el('span', { cls: 'badge kind-' + e.item.kind, text: e.item.kind === 'ox' ? '○×' : '4択' }));
+    e.right.appendChild(el('span', { text: ' 错 ' + e.item.wrong_count + ' 次 · 连对 ' + e.item.streak + '/2' }));
+  }
+
+  /* 答完的即时反馈走本地状态推导;库里由 /api/answer 顺手记录,无需回读 */
+  function noteAfter(item, res) {
+    const e = rowMap[item.id];
+    if (res.correct) {
+      if (e) {
+        e.item.streak = (e.item.streak || 0) + 1;
+        refreshRow(e);
+        if (e.item.streak >= 2) return '连对 2 次达标,这轮复习结束就移出错题本 🎉';
+        return '连对 ' + e.item.streak + '/2,再对一次就移出';
+      }
+      return '答对了 ✓';
+    }
+    if (e) {
+      e.item.wrong_count = (e.item.wrong_count || 0) + 1;
+      e.item.streak = 0;
+      refreshRow(e);
+    }
+    return '又错一次,连对清零——解释在上方,别让同一个坑咬两次';
+  }
+
+  /* 单题重做:只刷这一道,不走整个复习队列 */
+  function redoOne(it) {
+    if (reviewBtn) reviewBtn.disabled = true;
+    clear(stage);
+    const sess = new PracticeSession(stage, [it], {
+      exitLabel: '返回错题本',
+      onExit: function () { renderWrong(view); },
+      onAnswered: function (item, res) { return noteAfter(item, res); },
+      onDone: function () { },
+    });
+    sess.start();
   }
 
   if (!data.total) {
     panel.appendChild(el('div', { cls: 'empty', text: '太强了,错题本是空的' }));
     panel.appendChild(el('p', { cls: 'muted', text: '去「练习」做几题吧;答错过的题会出现在这里。' }));
   } else {
-    const reviewBtn = el('button', { cls: 'btn primary', attrs: { type: 'button' }, text: '开始复习' });
+    reviewBtn = el('button', { cls: 'btn primary', attrs: { type: 'button' }, text: '开始复习' });
     btnRow.appendChild(reviewBtn);
     panel.appendChild(btnRow);
     drawList(data.items);
@@ -483,16 +558,8 @@ async function renderWrong(view) {
         exitLabel: '返回错题本',
         onExit: function () { renderWrong(view); },
         onAbort: function () { renderWrong(view); },
-        onAnswered: async function (item) {
-          const fresh = await api('/api/wrong');
-          state.wrongItems = fresh.items;
-          info.textContent = '共 ' + fresh.total + ' 题 · 连续答对 2 次自动移出';
-          drawList(fresh.items);
-          const still = fresh.items.filter(function (x) { return x.id === item.id; })[0];
-          if (!still) return '已移出错题本 🎉';
-          return '该题还要再连对 ' + (2 - still.streak) + ' 次才移出(当前连对 ' + still.streak + '/2)';
-        },
-        onDone: function () { reviewBtn.disabled = false; },
+        onAnswered: function (item, res) { return noteAfter(item, res); },
+        onDone: function () { reviewBtn.disabled = false; },   /* 刷新留给 onExit,别冲掉完成面板 */
       });
       sess.start();
     });
