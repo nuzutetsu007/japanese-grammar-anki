@@ -192,7 +192,8 @@ def fetch_wrong_book(conn: sqlite3.Connection) -> list[dict]:
         "SELECT q.id, q.kind, q.stem, q.choices, q.chapter, q.pages, q.ref, q.origin, q.difficulty,"
         " t.n_wrong, t.last_wrong FROM question q"
         " JOIN (SELECT question_id, SUM(correct=0) AS n_wrong, MAX(CASE WHEN correct=0 THEN ts END) AS last_wrong"
-        "       FROM attempt WHERE IFNULL(chosen,'')<>'' GROUP BY question_id) t ON t.question_id=q.id"
+        "       FROM attempt WHERE IFNULL(chosen,'')<>'' GROUP BY question_id"
+        "       HAVING SUM(correct=0) > 0) t ON t.question_id=q.id"
         f" WHERE {usable_sql('q')}").fetchall()
     streaks = attempt_streaks(conn, [r["id"] for r in cand])
     out = []
